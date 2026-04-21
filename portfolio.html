@@ -10,7 +10,7 @@
   :root {
     --chrome: #b8c4cf; --chrome-bright: #dde5ec; --chrome-dim: #5a6a7a;
     --blue-glow: #1e5580; --dark: #04080d; --dark-2: #070d14; --dark-3: #0c1620;
-    --text: #cdd8e3; --text-muted: #5a6e80;
+    --text: #c8d8e8; --text-muted: #8aa0b4;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--dark); color: var(--text); font-family: 'Rajdhani', sans-serif; font-weight: 400; overflow-x: hidden; }
@@ -18,21 +18,23 @@
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 4rem; background: rgba(4,8,13,0.97); border-bottom: 1px solid rgba(90,106,122,0.2); }
   .nav-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome-bright); text-decoration: none; }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; transition: color 0.3s; }
   .nav-links a:hover, .nav-links a.active { color: var(--chrome-bright); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--chrome-bright); }
+  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(4,8,13,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { color: var(--chrome-bright); text-decoration: none; font-size: 1.5rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; }
+  .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--chrome-bright); font-size: 1.5rem; cursor: pointer; }
 
   .page-header { padding: 10rem 4rem 5rem; background: var(--dark-2); text-align: center; border-bottom: 1px solid rgba(90,106,122,0.15); }
-  .section-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.45em; text-transform: uppercase; color: var(--chrome-dim); margin-bottom: 1rem; display: block; }
+  .section-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.45em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; display: block; }
   .page-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(2.5rem,6vw,4.5rem); font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--chrome-bright); }
-
-  .filter-bar { display: flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 2.5rem 4rem; flex-wrap: wrap; }
-  .filter-btn { padding: 0.5rem 1.5rem; background: transparent; border: 1px solid rgba(90,106,122,0.25); color: var(--text-muted); font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; cursor: pointer; transition: all 0.3s; }
-  .filter-btn:hover, .filter-btn.active { border-color: var(--chrome); color: var(--chrome-bright); background: rgba(184,196,207,0.06); }
 
   .portfolio-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
   .portfolio-item { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--dark-3); cursor: pointer; }
   .portfolio-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; background: var(--dark-3); border: 1px solid rgba(90,106,122,0.1); }
-  .placeholder-icon { font-family: 'Rajdhani', sans-serif; font-size: 2.5rem; font-weight: 300; color: rgba(90,106,122,0.3); letter-spacing: 0.2em; }
+  .placeholder-icon { font-size: 2rem; color: rgba(90,106,122,0.3); }
   .placeholder-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(90,106,122,0.3); }
   .portfolio-item img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
   .portfolio-item:hover img { transform: scale(1.05); }
@@ -41,31 +43,51 @@
   .overlay-tag { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--chrome-dim); margin-bottom: 0.4rem; }
   .overlay-title { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 500; letter-spacing: 0.1em; color: var(--chrome-bright); }
 
-  .photo-notice { background: rgba(30,85,128,0.06); border: 1px solid rgba(90,106,122,0.2); padding: 2rem 3rem; margin: 4rem auto; max-width: 700px; text-align: center; }
-  .photo-notice h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--chrome); margin-bottom: 0.8rem; }
-  .photo-notice p { font-size: 0.85rem; color: var(--text-muted); line-height: 2; }
-  .photo-notice code { color: var(--chrome-bright); font-size: 0.8rem; }
+  /* LIGHTBOX */
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(4,8,13,0.96); align-items: center; justify-content: center; padding: 2rem; }
+  .lightbox.open { display: flex; }
+  .lightbox-inner { display: flex; max-width: 900px; width: 100%; max-height: 90vh; background: var(--dark-2); border: 1px solid rgba(90,106,122,0.25); overflow: hidden; position: relative; }
+  .lightbox-img { width: 55%; flex-shrink: 0; object-fit: cover; display: block; }
+  .lightbox-img-placeholder { width: 55%; flex-shrink: 0; background: var(--dark-3); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: rgba(90,106,122,0.2); min-height: 400px; }
+  .lightbox-info { flex: 1; padding: 2.5rem 2rem; display: flex; flex-direction: column; justify-content: space-between; overflow-y: auto; }
+  .lightbox-tag { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome-dim); margin-bottom: 0.6rem; }
+  .lightbox-title { font-family: 'Rajdhani', sans-serif; font-size: 1.6rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 1rem; line-height: 1.2; }
+  .lightbox-desc { font-size: 0.9rem; font-weight: 500; color: var(--text-muted); line-height: 1.9; margin-bottom: 1.5rem; }
+  .lightbox-divider { height: 1px; background: rgba(90,106,122,0.2); margin-bottom: 1.5rem; }
+  .lightbox-price-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; }
+  .lightbox-price { font-family: 'Rajdhani', sans-serif; font-size: 2rem; font-weight: 300; color: var(--chrome-bright); line-height: 1; margin-bottom: 0.4rem; }
+  .lightbox-price-note { font-size: 0.78rem; font-weight: 500; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6; }
+  .lightbox-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--chrome-dim); font-size: 1.3rem; cursor: pointer; transition: color 0.2s; line-height: 1; padding: 0.3rem; z-index: 1; }
+  .lightbox-close:hover { color: var(--chrome-bright); }
+  .lb-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 0.75rem 1.5rem; font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; white-space: nowrap; }
+  .btn-chrome { background: linear-gradient(135deg, var(--chrome-bright) 0%, var(--chrome) 60%, var(--chrome-dim) 100%); color: var(--dark); }
+  .btn-chrome:hover { background: var(--chrome-bright); }
+  .btn-outline { background: transparent; color: var(--chrome-bright); border: 1px solid rgba(221,229,236,0.35); }
+  .btn-outline:hover { background: rgba(184,196,207,0.07); border-color: var(--chrome-bright); }
 
   .cta-band { background: var(--dark-2); text-align: center; padding: 6rem 4rem; border-top: 1px solid rgba(90,106,122,0.15); }
   .cta-band h2 { font-family: 'Rajdhani', sans-serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 0.5rem; }
-  .cta-band p { font-size: 0.95rem; color: var(--text-muted); max-width: 400px; margin: 0 auto 2rem; line-height: 2; }
-  .btn { display: inline-block; padding: 0.85rem 2.5rem; font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; }
-  .btn-chrome { background: linear-gradient(135deg, var(--chrome-bright) 0%, var(--chrome) 60%, var(--chrome-dim) 100%); color: var(--dark); }
-  .btn-chrome:hover { background: var(--chrome-bright); }
+  .cta-band p { font-size: 0.95rem; font-weight: 500; color: var(--text-muted); max-width: 400px; margin: 0 auto 2rem; line-height: 2; }
 
   footer { background: #020508; padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(90,106,122,0.2); }
   .footer-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome); }
   .footer-links { display: flex; gap: 2rem; list-style: none; }
-  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; }
+  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; }
   .footer-links a:hover { color: var(--chrome-bright); }
-  .footer-copy { font-size: 0.65rem; color: #2a3a4a; }
+  .footer-copy { font-size: 0.65rem; color: #3a4a5a; }
 
   @media (max-width: 768px) {
-    nav { padding: 1.2rem 1.5rem; } .nav-links { display: none; }
+    nav { padding: 1.2rem 1.5rem; } .nav-links { display: none; } .hamburger { display: flex; }
     .portfolio-grid { grid-template-columns: repeat(2,1fr); }
     .page-header { padding: 7rem 1.5rem 3rem; }
-    .photo-notice { margin: 2rem 1.5rem; padding: 1.5rem; }
+    .lightbox { padding: 0; align-items: flex-end; }
+    .lightbox-inner { flex-direction: column; max-height: 92vh; width: 100%; border-left: none; border-right: none; border-bottom: none; }
+    .lightbox-img, .lightbox-img-placeholder { width: 100%; height: 220px; min-height: unset; flex-shrink: 0; }
+    .lightbox-info { padding: 1.5rem; }
+    .lb-btns { flex-direction: column; }
     footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
   }
 </style>
 </head>
@@ -75,101 +97,179 @@
   <a href="index.html" class="nav-logo">Diamandi</a>
   <ul class="nav-links">
     <li><a href="portfolio.html" class="active">Portfolio</a></li>
-    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="pricelist.html">Price List</a></li>
     <li><a href="booking.html">Book</a></li>
   </ul>
+  <div class="hamburger" onclick="openMenu()">
+    <span></span><span></span><span></span>
+  </div>
 </nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" onclick="closeMenu()">✕</button>
+  <a href="portfolio.html" onclick="closeMenu()">Portfolio</a>
+  <a href="pricelist.html" onclick="closeMenu()">Price List</a>
+  <a href="booking.html" onclick="closeMenu()">Book</a>
+</div>
 
 <div class="page-header">
   <span class="section-label">The Work</span>
   <h1 class="page-title">Portfolio</h1>
 </div>
 
-<div class="filter-bar">
-  <button class="filter-btn active" onclick="filterItems(this,'all')">All</button>
-  <button class="filter-btn" onclick="filterItems(this,'gold')">Gold</button>
-  <button class="filter-btn" onclick="filterItems(this,'diamond')">Diamond</button>
-  <button class="filter-btn" onclick="filterItems(this,'silver')">Silver</button>
-  <button class="filter-btn" onclick="filterItems(this,'custom')">Custom</button>
-</div>
 
-<!-- TO ADD PHOTOS: Replace each .portfolio-placeholder with <img src="images/yourphoto.jpg" alt="..."> -->
+<!--
+  TO ADD YOUR PHOTOS:
+  1. Upload photos to the images/ folder on GitHub
+  2. Replace <div class="portfolio-placeholder">...</div> with <img src="images/yourphoto.jpg" alt="...">
+  3. Update data-title, data-tag, data-desc, data-price on each .portfolio-item
+  4. Set data-custom="true" on any bespoke pieces (shows Price on Request)
+-->
 <div class="portfolio-grid" id="portfolio-grid">
-  <div class="portfolio-item" data-category="gold">
+
+  <div class="portfolio-item" data-category="gold" data-tag="Gold" data-title="14ct Yellow Gold Bottom 6" data-desc="Six-piece bottom set in 14ct yellow gold. Full cap finish with high polish." data-price="from £180 per tooth" data-custom="false" onclick="openLightbox(this)">
     <div class="portfolio-placeholder"><span class="placeholder-icon">◆</span><span class="placeholder-label">Add photo</span></div>
-    <div class="portfolio-overlay"><span class="overlay-tag">Gold</span><span class="overlay-title">14k Yellow Gold Bottom 6</span></div>
+    <div class="portfolio-overlay"><span class="overlay-tag">Gold</span><span class="overlay-title">14ct Yellow Gold Bottom 6</span></div>
   </div>
-  <div class="portfolio-item" data-category="diamond">
+
+  <div class="portfolio-item" data-category="silver" data-tag="Silver" data-title="925 Silver Window Set" data-desc="Top 4 in 925 sterling silver with open window cut-outs." data-price="from £80 per tooth" data-custom="false" onclick="openLightbox(this)">
     <div class="portfolio-placeholder"><span class="placeholder-icon">◆</span><span class="placeholder-label">Add photo</span></div>
-    <div class="portfolio-overlay"><span class="overlay-tag">Diamond</span><span class="overlay-title">VVS Full Set</span></div>
+    <div class="portfolio-overlay"><span class="overlay-tag">Silver</span><span class="overlay-title">925 Silver Window Set</span></div>
   </div>
-  <div class="portfolio-item" data-category="gold">
+
+  <div class="portfolio-item" data-category="gold" data-tag="Gold" data-title="18ct Rose Gold Top 4" data-desc="Four-piece top set in 18ct rose gold. Window with star design." data-price="from £250 per tooth" data-custom="false" onclick="openLightbox(this)">
     <div class="portfolio-placeholder"><span class="placeholder-icon">◆</span><span class="placeholder-label">Add photo</span></div>
-    <div class="portfolio-overlay"><span class="overlay-tag">Gold</span><span class="overlay-title">18k Rose Gold Top 4</span></div>
+    <div class="portfolio-overlay"><span class="overlay-tag">Gold</span><span class="overlay-title">18ct Rose Gold Top 4</span></div>
   </div>
-  <div class="portfolio-item" data-category="custom">
+
+  <div class="portfolio-item" data-category="custom" data-tag="Custom" data-title="Open Face Diamond Cut" data-desc="Bespoke open face design with custom diamond-pattern cut work. One of a kind." data-price="" data-custom="true" onclick="openLightbox(this)">
     <div class="portfolio-placeholder"><span class="placeholder-icon">◆</span><span class="placeholder-label">Add photo</span></div>
     <div class="portfolio-overlay"><span class="overlay-tag">Custom</span><span class="overlay-title">Open Face Diamond Cut</span></div>
   </div>
-  <div class="portfolio-item" data-category="silver">
+
+  <div class="portfolio-item" data-category="silver" data-tag="Silver" data-title="Silver Chrome Hearts Cross" data-desc="Chrome Hearts cross motif cap in 925 silver. Clean and iconic." data-price="from £150 per tooth" data-custom="false" onclick="openLightbox(this)">
     <div class="portfolio-placeholder"><span class="placeholder-icon">◆</span><span class="placeholder-label">Add photo</span></div>
-    <div class="portfolio-overlay"><span class="overlay-tag">Silver</span><span class="overlay-title">925 Silver Bottom 8</span></div>
+    <div class="portfolio-overlay"><span class="overlay-tag">Silver</span><span class="overlay-title">Chrome Hearts Cross</span></div>
   </div>
-  <div class="portfolio-item" data-category="diamond">
+
+  <div class="portfolio-item" data-category="gold" data-tag="Gold" data-title="14ct White Gold Full Set" data-desc="Full top and bottom set in 14ct white gold with window inlay design." data-price="from £210 per tooth" data-custom="false" onclick="openLightbox(this)">
     <div class="portfolio-placeholder"><span class="placeholder-icon">◆</span><span class="placeholder-label">Add photo</span></div>
-    <div class="portfolio-overlay"><span class="overlay-tag">Diamond</span><span class="overlay-title">Baguette Cut Top 6</span></div>
+    <div class="portfolio-overlay"><span class="overlay-tag">Gold</span><span class="overlay-title">14ct White Gold Full Set</span></div>
   </div>
-  <div class="portfolio-item" data-category="gold">
+
+  <div class="portfolio-item" data-category="custom" data-tag="Custom" data-title="Bespoke Fang Set" data-desc="Custom fang-shaped caps in yellow gold. Fully bespoke shaping." data-price="" data-custom="true" onclick="openLightbox(this)">
     <div class="portfolio-placeholder"><span class="placeholder-icon">◆</span><span class="placeholder-label">Add photo</span></div>
-    <div class="portfolio-overlay"><span class="overlay-tag">Gold</span><span class="overlay-title">14k White Gold Full Set</span></div>
+    <div class="portfolio-overlay"><span class="overlay-tag">Custom</span><span class="overlay-title">Bespoke Fang Set</span></div>
   </div>
-  <div class="portfolio-item" data-category="custom">
+
+  <div class="portfolio-item" data-category="gold" data-tag="Gold" data-title="9ct Gold Star Set" data-desc="Bottom 4 in 9ct yellow gold with star cut-out design." data-price="from £170 per tooth" data-custom="false" onclick="openLightbox(this)">
     <div class="portfolio-placeholder"><span class="placeholder-icon">◆</span><span class="placeholder-label">Add photo</span></div>
-    <div class="portfolio-overlay"><span class="overlay-tag">Custom</span><span class="overlay-title">Fangs — Yellow Gold</span></div>
+    <div class="portfolio-overlay"><span class="overlay-tag">Gold</span><span class="overlay-title">9ct Gold Star Set</span></div>
   </div>
-  <div class="portfolio-item" data-category="diamond">
+
+  <div class="portfolio-item" data-category="custom" data-tag="Custom" data-title="Custom Engraved Piece" data-desc="Bespoke engraved cap with personalised detailing throughout." data-price="" data-custom="true" onclick="openLightbox(this)">
     <div class="portfolio-placeholder"><span class="placeholder-icon">◆</span><span class="placeholder-label">Add photo</span></div>
-    <div class="portfolio-overlay"><span class="overlay-tag">Diamond</span><span class="overlay-title">Iced Out Custom Piece</span></div>
+    <div class="portfolio-overlay"><span class="overlay-tag">Custom</span><span class="overlay-title">Custom Engraved Piece</span></div>
   </div>
+
 </div>
 
-<div style="padding:3rem 4rem">
-  <div class="photo-notice">
-    <h3>Adding Your Photos</h3>
-    <p>
-      Create an <code>images/</code> folder next to your HTML files and drop your photos in.<br>
-      Then replace each <code>&lt;div class="portfolio-placeholder"&gt;</code> with:<br><br>
-      <code>&lt;img src="images/yourphoto.jpg" alt="Gold grillz"&gt;</code><br><br>
-      Update each <code>overlay-tag</code> and <code>overlay-title</code> to match. Delete this box when done.
-    </p>
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <div class="lightbox-inner" id="lightbox-inner">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <div class="lightbox-img-placeholder" id="lb-img-wrap">◆</div>
+    <div class="lightbox-info">
+      <div>
+        <div class="lightbox-tag" id="lb-tag"></div>
+        <div class="lightbox-title" id="lb-title"></div>
+        <div class="lightbox-desc" id="lb-desc"></div>
+      </div>
+      <div>
+        <div class="lightbox-divider"></div>
+        <div class="lightbox-price-label" id="lb-price-label"></div>
+        <div class="lightbox-price" id="lb-price"></div>
+        <div class="lightbox-price-note" id="lb-note"></div>
+        <div class="lb-btns" id="lb-btn-wrap"></div>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="cta-band">
   <span class="section-label" style="display:block;margin-bottom:1rem">Like what you see?</span>
   <h2>Book a consultation</h2>
-  <p>Free, no obligation. Yours in 7–10 days.</p>
+  <p>All pieces made to order. Fully bespoke.</p>
   <a href="booking.html" class="btn btn-chrome">Book Now</a>
 </div>
 
 <footer>
   <span class="footer-logo">Diamandi</span>
   <ul class="footer-links">
-    <li><a href="portfolio.html">Portfolio</a></li>
-    <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="pricelist.html">Price List</a></li>
     <li><a href="booking.html">Book</a></li>
+    <li><a href="terms.html">T&amp;Cs</a></li>
   </ul>
   <span class="footer-copy">&copy; 2025 Diamandi Jewellery</span>
 </footer>
 
 <script>
-function filterItems(btn, category) {
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.portfolio-item').forEach(item => {
-    item.style.display = (category === 'all' || item.dataset.category === category) ? '' : 'none';
-  });
+
+function openLightbox(el) {
+  const isCustom = el.dataset.custom === 'true';
+  const imgEl = el.querySelector('img');
+  const wrap = document.getElementById('lb-img-wrap');
+
+  if (imgEl) {
+    const newImg = document.createElement('img');
+    newImg.className = 'lightbox-img';
+    newImg.id = 'lb-img-wrap';
+    newImg.src = imgEl.src;
+    newImg.alt = '';
+    wrap.parentNode.replaceChild(newImg, wrap);
+  } else {
+    wrap.className = 'lightbox-img-placeholder';
+    wrap.id = 'lb-img-wrap';
+    wrap.textContent = '◆';
+  }
+
+  document.getElementById('lb-tag').textContent = el.dataset.tag;
+  document.getElementById('lb-title').textContent = el.dataset.title;
+  document.getElementById('lb-desc').textContent = el.dataset.desc;
+
+  if (isCustom) {
+    document.getElementById('lb-price-label').textContent = 'Pricing';
+    const priceEl = document.getElementById('lb-price');
+    priceEl.textContent = 'Price on Request';
+    priceEl.style.fontSize = '1.4rem';
+    document.getElementById('lb-note').textContent = 'Every custom piece is quoted individually at consultation.';
+    document.getElementById('lb-btn-wrap').innerHTML = '<a href="booking.html" class="btn btn-chrome">Book a Consultation</a>';
+  } else {
+    document.getElementById('lb-price-label').textContent = 'Starting from';
+    const priceEl = document.getElementById('lb-price');
+    priceEl.textContent = el.dataset.price;
+    priceEl.style.fontSize = '2rem';
+    document.getElementById('lb-note').textContent = 'Final price confirmed at consultation. See full price list for all materials.';
+    document.getElementById('lb-btn-wrap').innerHTML = '<a href="pricelist.html" class="btn btn-outline">Full Price List</a><a href="booking.html" class="btn btn-chrome">Book Now</a>';
+  }
+
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeLightboxOutside(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+function openMenu() { document.getElementById('mobile-menu').classList.add('open'); }
+function closeMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
 </script>
 </body>
 </html>
