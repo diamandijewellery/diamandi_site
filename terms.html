@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms &amp; Conditions — Diamandi Jewellery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --chrome: #b8c4cf; --chrome-bright: #dde5ec; --chrome-dim: #5a6a7a;
+    --blue-glow: #1e5580; --dark: #04080d; --dark-2: #070d14; --dark-3: #0c1620;
+    --text: #c8d8e8; --text-muted: #8aa0b4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--dark); color: var(--text); font-family: 'Rajdhani', sans-serif; font-weight: 400; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 4rem; background: rgba(4,8,13,0.97); border-bottom: 1px solid rgba(90,106,122,0.2); }
+  .nav-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome-bright); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--chrome-bright); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--chrome-bright); }
+  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(4,8,13,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { color: var(--chrome-bright); text-decoration: none; font-size: 1.5rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; }
+  .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--chrome-bright); font-size: 1.5rem; cursor: pointer; }
+
+  .page-header { padding: 10rem 4rem 4rem; background: var(--dark-2); text-align: center; border-bottom: 1px solid rgba(90,106,122,0.15); }
+  .section-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.45em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; display: block; }
+  .page-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(2.5rem,6vw,4rem); font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--chrome-bright); }
+  .page-sub { font-size: 0.88rem; font-weight: 500; color: var(--text-muted); margin-top: 1rem; line-height: 2; }
+
+  /* CONTENT */
+  .terms-wrap { max-width: 800px; margin: 0 auto; padding: 5rem 4rem 7rem; }
+  .terms-section { margin-bottom: 3rem; }
+  .terms-section-title {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.1rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--chrome-bright);
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(90,106,122,0.2);
+    margin-bottom: 1.25rem;
+  }
+  .terms-section p {
+    font-size: 0.95rem; font-weight: 500;
+    color: #a8bece; line-height: 2;
+    margin-bottom: 1rem;
+  }
+  .terms-section ul {
+    list-style: none; margin-bottom: 1rem;
+  }
+  .terms-section ul li {
+    font-size: 0.95rem; font-weight: 500;
+    color: #a8bece; line-height: 2;
+    padding: 0.3rem 0 0.3rem 1.5rem;
+    position: relative;
+  }
+  .terms-section ul li::before {
+    content: '◆';
+    position: absolute; left: 0;
+    color: var(--chrome-dim); font-size: 0.4rem;
+    top: 0.75rem;
+  }
+  .last-updated { font-size: 0.75rem; font-weight: 500; color: var(--text-muted); margin-bottom: 3rem; letter-spacing: 0.1em; }
+
+  footer { background: #020508; padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(90,106,122,0.2); }
+  .footer-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--chrome-bright); }
+  .footer-copy { font-size: 0.65rem; color: #3a4a5a; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; } .nav-links { display: none; } .hamburger { display: flex; }
+    .page-header { padding: 7rem 1.5rem 3rem; }
+    .terms-wrap { padding: 3rem 1.5rem 5rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Diamandi</a>
+  <ul class="nav-links">
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="pricelist.html">Price List</a></li>
+    <li><a href="booking.html">Book</a></li>
+  </ul>
+  <div class="hamburger" onclick="openMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" onclick="closeMenu()">✕</button>
+  <a href="portfolio.html" onclick="closeMenu()">Portfolio</a>
+  <a href="pricelist.html" onclick="closeMenu()">Price List</a>
+  <a href="booking.html" onclick="closeMenu()">Book</a>
+</div>
+
+<div class="page-header">
+  <span class="section-label">Legal</span>
+  <h1 class="page-title">Terms &amp; Conditions</h1>
+  <p class="page-sub">Please read these terms carefully before placing an order.</p>
+</div>
+
+<div class="terms-wrap">
+  <p class="last-updated">Last updated: April 2025</p>
+
+  <div class="terms-section">
+    <h2 class="terms-section-title">1. General</h2>
+    <p>These terms and conditions apply to all orders placed with Diamandi Jewellery ("Diamandi", "we", "us"). By placing an order or booking a consultation, you agree to these terms.</p>
+    <p>Diamandi is a bespoke grillz and jewellery service. All pieces are made to order and customised to the individual client.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2 class="terms-section-title">2. Consultations &amp; Deposits</h2>
+    <p>A £30 consultation deposit is required to secure your appointment. This deposit is non-refundable if you cancel with less than 24 hours notice or fail to attend.</p>
+    <p>If you attend your consultation and choose to proceed with an order, the £30 deposit will be deducted from your final balance.</p>
+    <p>If you attend but decide not to proceed with an order, the £30 deposit is retained as a consultation fee.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2 class="terms-section-title">3. Orders &amp; Payment</h2>
+    <p>All prices quoted are per tooth and are confirmed at consultation. A written quote will be provided before any production begins.</p>
+    <p>A 50% production deposit is required to begin work. This deposit is non-refundable once production has commenced.</p>
+    <p>The remaining balance is due in full upon collection or prior to shipping.</p>
+    <p>Accepted payment methods: [ADD YOUR PAYMENT METHODS HERE — e.g. bank transfer, cash, card].</p>
+  </div>
+
+  <div class="terms-section">
+    <h2 class="terms-section-title">4. Production &amp; Timelines</h2>
+    <p>All pieces are handmade to order. Production timelines are confirmed at consultation and vary depending on the design, material, and current workload.</p>
+    <p>Diamandi will make every reasonable effort to meet agreed timelines. However, we cannot be held liable for delays caused by factors outside of our control.</p>
+    <p>Any changes to a confirmed order after production has begun may incur additional charges and extend the timeline.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2 class="terms-section-title">5. Fit &amp; Alterations</h2>
+    <p>All grillz are made from a dental impression taken at your consultation. It is the client's responsibility to ensure the impression is taken accurately.</p>
+    <p>One complimentary minor adjustment is offered within 14 days of collection if the fit is not as expected, provided the piece has not been damaged or altered.</p>
+    <p>Any significant changes to fit resulting from changes to the client's teeth after the impression was taken will be chargeable.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2 class="terms-section-title">6. Returns &amp; Refunds</h2>
+    <p>Due to the bespoke and custom nature of all pieces, we are unable to offer refunds or exchanges once production has commenced.</p>
+    <p>If a piece is found to have a manufacturing defect, please contact us within 7 days of receipt. Defective pieces will be repaired or remade at no charge.</p>
+    <p>Grillz are personal items worn in the mouth. For hygiene reasons, all sales are final once a piece has been worn.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2 class="terms-section-title">7. Shipping &amp; Delivery</h2>
+    <p>Pieces can be collected in person or shipped. Shipping is fully insured and tracked.</p>
+    <p>Shipping costs will be confirmed at the time of order. Diamandi cannot be held responsible for delays caused by third-party couriers once the item has been dispatched.</p>
+    <p>It is the client's responsibility to provide accurate delivery details. Re-delivery charges may apply if a parcel cannot be delivered due to an incorrect address.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2 class="terms-section-title">8. Materials &amp; Authenticity</h2>
+    <p>All metals used are as described at the time of order — 925 sterling silver, 9ct, 14ct, or 18ct gold as applicable.</p>
+    <p>Lab-grown and natural diamonds are genuine stones. A certificate of authenticity is provided with all diamond-set pieces.</p>
+    <p>Diamandi does not use plated metals unless explicitly agreed in writing with the client.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2 class="terms-section-title">9. Care &amp; Liability</h2>
+    <p>Grillz are removable jewellery accessories and are not intended as a permanent dental fitting. Diamandi is not responsible for any dental issues arising from use.</p>
+    <p>Clients are advised to remove grillz when eating, drinking (other than water), or sleeping. Regular cleaning is recommended.</p>
+    <p>Diamandi accepts no liability for damage caused by misuse, improper care, or modifications made by a third party.</p>
+  </div>
+
+  <div class="terms-section">
+    <h2 class="terms-section-title">10. Privacy</h2>
+    <p>Personal information collected during the booking and order process is used solely to fulfil your order and communicate with you about it. Your information will not be shared with third parties except where required to complete your order (e.g. shipping couriers).</p>
+  </div>
+
+  <div class="terms-section">
+    <h2 class="terms-section-title">11. Contact</h2>
+    <p>For any queries regarding these terms, please get in touch:</p>
+    <ul>
+      <li>Email: hello@diamandijewellery.com</li>
+      <li>Instagram: @diamandijewellery</li>
+    </ul>
+    <p style="margin-top:1rem">These terms are subject to change. The current version will always be available on this page.</p>
+  </div>
+
+</div>
+
+<footer>
+  <span class="footer-logo">Diamandi</span>
+  <ul class="footer-links">
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="pricelist.html">Price List</a></li>
+    <li><a href="booking.html">Book</a></li>
+    <li><a href="terms.html">T&amp;Cs</a></li>
+  </ul>
+  <span class="footer-copy">&copy; 2025 Diamandi Jewellery</span>
+</footer>
+
+<script>
+function openMenu() { document.getElementById('mobile-menu').classList.add('open'); }
+function closeMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
+</script>
+</body>
+</html>

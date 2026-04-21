@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Price List — Diamandi Jewellery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --chrome: #b8c4cf; --chrome-bright: #dde5ec; --chrome-dim: #5a6a7a;
+    --blue-glow: #1e5580; --dark: #04080d; --dark-2: #070d14; --dark-3: #0c1620;
+    --text: #c8d8e8; --text-muted: #8aa0b4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--dark); color: var(--text); font-family: 'Rajdhani', sans-serif; font-weight: 400; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 4rem; background: rgba(4,8,13,0.97); border-bottom: 1px solid rgba(90,106,122,0.2); }
+  .nav-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome-bright); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--chrome-bright); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--chrome-bright); }
+  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(4,8,13,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { color: var(--chrome-bright); text-decoration: none; font-size: 1.5rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; }
+  .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--chrome-bright); font-size: 1.5rem; cursor: pointer; }
+
+  .page-header { padding: 10rem 4rem 5rem; background: var(--dark-2); text-align: center; border-bottom: 1px solid rgba(90,106,122,0.15); }
+  .section-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.45em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; display: block; }
+  .page-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(2.5rem,6vw,4.5rem); font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--chrome-bright); }
+  .page-sub { font-size: 0.95rem; font-weight: 500; color: var(--text-muted); margin-top: 1rem; line-height: 2; max-width: 520px; margin-left: auto; margin-right: auto; }
+
+  /* TILES GRID */
+  .tiles-wrap { max-width: 1200px; margin: 0 auto; padding: 5rem 4rem; }
+  .tiles-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+
+  .tile { cursor: pointer; background: var(--dark-2); position: relative; overflow: hidden; }
+  .tile-img { width: 100%; aspect-ratio: 1; overflow: hidden; background: var(--dark-3); display: flex; align-items: center; justify-content: center; }
+  .tile-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .tile:hover .tile-img img { transform: scale(1.05); }
+  .tile-img-placeholder { width: 100%; aspect-ratio: 1; background: var(--dark-3); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; border: 1px solid rgba(90,106,122,0.1); transition: background 0.3s; }
+  .tile:hover .tile-img-placeholder { background: rgba(14,55,100,0.1); }
+  .tile-img-placeholder span { font-size: 2rem; color: rgba(90,106,122,0.3); }
+  .tile-img-placeholder small { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(90,106,122,0.3); }
+
+  .tile-info { padding: 1.25rem 1.5rem 1.75rem; border-top: 1px solid rgba(90,106,122,0.12); }
+  .tile-name { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 0.3rem; }
+  .tile-desc { font-size: 0.82rem; font-weight: 500; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.75rem; }
+  .tile-from { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--chrome-dim); margin-bottom: 0.2rem; }
+  .tile-price { font-family: 'Rajdhani', sans-serif; font-size: 1.6rem; font-weight: 300; color: var(--chrome-bright); line-height: 1; }
+
+  /* LIGHTBOX */
+  .lightbox { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(4,8,13,0.96); align-items: center; justify-content: center; padding: 2rem; }
+  .lightbox.open { display: flex; }
+  .lightbox-inner { display: flex; max-width: 860px; width: 100%; max-height: 90vh; background: var(--dark-2); border: 1px solid rgba(90,106,122,0.25); overflow: hidden; position: relative; }
+  .lb-img { width: 45%; flex-shrink: 0; object-fit: cover; display: block; }
+  .lb-img-placeholder { width: 45%; flex-shrink: 0; background: var(--dark-3); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; color: rgba(90,106,122,0.2); min-height: 420px; }
+  .lb-body { flex: 1; padding: 2.5rem 2rem; display: flex; flex-direction: column; overflow-y: auto; }
+  .lb-close { position: absolute; top: 1rem; right: 1rem; background: none; border: none; color: var(--chrome-dim); font-size: 1.3rem; cursor: pointer; transition: color 0.2s; z-index: 1; }
+  .lb-close:hover { color: var(--chrome-bright); }
+  .lb-name { font-family: 'Rajdhani', sans-serif; font-size: 1.6rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 0.5rem; line-height: 1.2; }
+  .lb-desc { font-size: 0.88rem; font-weight: 500; color: var(--text-muted); line-height: 1.9; margin-bottom: 1.5rem; }
+  .lb-divider { height: 1px; background: rgba(90,106,122,0.2); margin-bottom: 1.5rem; }
+  .lb-mat-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem; }
+  .lb-mat-btns { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.5rem; }
+  .lb-mat-btn { padding: 0.4rem 1rem; background: transparent; border: 1px solid rgba(90,106,122,0.3); color: var(--text-muted); font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+  .lb-mat-btn:hover { border-color: var(--chrome); color: var(--chrome-bright); }
+  .lb-mat-btn.active { border-color: var(--chrome-bright); color: var(--chrome-bright); background: rgba(221,229,236,0.07); }
+  .lb-price-label { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem; }
+  .lb-price { font-family: 'Rajdhani', sans-serif; font-size: 2.4rem; font-weight: 300; color: var(--chrome-bright); line-height: 1; margin-bottom: 0.3rem; }
+  .lb-price-note { font-size: 0.75rem; font-weight: 500; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6; }
+  .lb-unavail { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(90,106,122,0.5); margin-bottom: 1.5rem; }
+  .lb-actions { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-top: auto; }
+  .btn { display: inline-block; padding: 0.75rem 1.5rem; font-family: 'Rajdhani', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; white-space: nowrap; }
+  .btn-chrome { background: linear-gradient(135deg, var(--chrome-bright) 0%, var(--chrome) 60%, var(--chrome-dim) 100%); color: var(--dark); }
+  .btn-chrome:hover { background: var(--chrome-bright); }
+
+  /* NOTES */
+  .notes-wrap { max-width: 1200px; margin: 0 auto; padding: 0 4rem 5rem; }
+  .notes-title { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.45em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; padding-bottom: 0.75rem; border-bottom: 1px solid rgba(90,106,122,0.15); }
+  .note { display: flex; gap: 0.8rem; align-items: flex-start; padding: 0.9rem 0; border-bottom: 1px solid rgba(90,106,122,0.08); font-size: 0.88rem; font-weight: 500; color: var(--text-muted); line-height: 1.7; }
+  .note::before { content: '◆'; color: var(--chrome-dim); font-size: 0.4rem; flex-shrink: 0; margin-top: 0.5rem; }
+
+  .cta-band { background: var(--dark-2); text-align: center; padding: 5rem 4rem; border-top: 1px solid rgba(90,106,122,0.15); }
+  .cta-band h2 { font-family: 'Rajdhani', sans-serif; font-size: 2.2rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 0.5rem; }
+  .cta-band p { font-size: 0.95rem; font-weight: 500; color: var(--text-muted); max-width: 400px; margin: 0 auto 2rem; line-height: 2; }
+
+  footer { background: #020508; padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(90,106,122,0.2); }
+  .footer-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--chrome-bright); }
+  .footer-copy { font-size: 0.65rem; color: #3a4a5a; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; } .nav-links { display: none; } .hamburger { display: flex; }
+    .tiles-wrap { padding: 3rem 1rem; }
+    .tiles-grid { grid-template-columns: repeat(2, 1fr); }
+    .notes-wrap { padding: 0 1.5rem 3rem; }
+    .lightbox { padding: 0; align-items: flex-end; }
+    .lightbox-inner { flex-direction: column; max-height: 92vh; width: 100%; }
+    .lb-img, .lb-img-placeholder { width: 100%; height: 200px; min-height: unset; flex-shrink: 0; }
+    .lb-body { padding: 1.5rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Diamandi</a>
+  <ul class="nav-links">
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="pricelist.html" class="active">Price List</a></li>
+    <li><a href="booking.html">Book</a></li>
+  </ul>
+  <div class="hamburger" onclick="openMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" onclick="closeMenu()">✕</button>
+  <a href="portfolio.html" onclick="closeMenu()">Portfolio</a>
+  <a href="pricelist.html" onclick="closeMenu()">Price List</a>
+  <a href="booking.html" onclick="closeMenu()">Book</a>
+</div>
+
+<div class="page-header">
+  <span class="section-label">Transparent Pricing</span>
+  <h1 class="page-title">Price List</h1>
+  <p class="page-sub">Click any design to see full pricing by material. All prices are per tooth — final quote confirmed at consultation.</p>
+</div>
+
+<!--
+  TO ADD IMAGES TO TILES:
+  Replace <div class="tile-img-placeholder">...</div> with:
+  <div class="tile-img"><img src="images/yourphoto.jpg" alt="Single Cap"></div>
+  Add the same image path to data-img on the .tile div.
+-->
+<div class="tiles-wrap">
+  <div class="tiles-grid">
+
+    <div class="tile"
+      data-name="Single Cap"
+      data-desc="Full coverage cap. Clean, classic look. Available in all metals."
+      data-img=""
+      data-silver="70" data-dental="90" data-9k="120" data-14k="180" data-18k="220"
+      data-ch="false"
+      onclick="openLightbox(this)">
+      <div class="tile-img-placeholder"><span>◆</span><small>Add photo</small></div>
+      <div class="tile-info">
+        <div class="tile-name">Single Cap</div>
+        <div class="tile-desc">Full coverage cap. Clean, classic look.</div>
+        <div class="tile-from">From</div>
+        <div class="tile-price">£70 <span style="font-size:0.9rem;color:var(--text-muted)">per tooth</span></div>
+      </div>
+    </div>
+
+    <div class="tile"
+      data-name="Window"
+      data-desc="Open cut-out revealing the natural tooth underneath. Iconic grillz look."
+      data-img=""
+      data-silver="80" data-dental="100" data-9k="130" data-14k="190" data-18k="230"
+      data-ch="false"
+      onclick="openLightbox(this)">
+      <div class="tile-img-placeholder"><span>◆</span><small>Add photo</small></div>
+      <div class="tile-info">
+        <div class="tile-name">Window</div>
+        <div class="tile-desc">Open cut-out revealing the natural tooth.</div>
+        <div class="tile-from">From</div>
+        <div class="tile-price">£80 <span style="font-size:0.9rem;color:var(--text-muted)">per tooth</span></div>
+      </div>
+    </div>
+
+    <div class="tile"
+      data-name="Window with Inlay"
+      data-desc="Window cut-out with decorative inlay detail inside the frame."
+      data-img=""
+      data-silver="100" data-dental="120" data-9k="150" data-14k="210" data-18k="250"
+      data-ch="false"
+      onclick="openLightbox(this)">
+      <div class="tile-img-placeholder"><span>◆</span><small>Add photo</small></div>
+      <div class="tile-info">
+        <div class="tile-name">Window with Inlay</div>
+        <div class="tile-desc">Window cut-out with decorative inlay detail.</div>
+        <div class="tile-from">From</div>
+        <div class="tile-price">£100 <span style="font-size:0.9rem;color:var(--text-muted)">per tooth</span></div>
+      </div>
+    </div>
+
+    <div class="tile"
+      data-name="Window, Inlay &amp; Diamonds"
+      data-desc="Window with inlay, set with lab-grown diamonds. Add £20 per tooth to upgrade to natural VVS diamonds."
+      data-img=""
+      data-silver="130" data-dental="150" data-9k="170" data-14k="230" data-18k="270"
+      data-ch="false"
+      onclick="openLightbox(this)">
+      <div class="tile-img-placeholder"><span>◆</span><small>Add photo</small></div>
+      <div class="tile-info">
+        <div class="tile-name">Window, Inlay &amp; Diamonds</div>
+        <div class="tile-desc">Inlay set with lab-grown diamonds. Natural VVS +£20/tooth.</div>
+        <div class="tile-from">From</div>
+        <div class="tile-price">£130 <span style="font-size:0.9rem;color:var(--text-muted)">per tooth</span></div>
+      </div>
+    </div>
+
+    <div class="tile"
+      data-name="Window with Star"
+      data-desc="Window cut-out with a star-shaped design element. A popular statement piece."
+      data-img=""
+      data-silver="100" data-dental="120" data-9k="150" data-14k="210" data-18k="250"
+      data-ch="false"
+      onclick="openLightbox(this)">
+      <div class="tile-img-placeholder"><span>◆</span><small>Add photo</small></div>
+      <div class="tile-info">
+        <div class="tile-name">Window with Star</div>
+        <div class="tile-desc">Window cut-out with a star-shaped design element.</div>
+        <div class="tile-from">From</div>
+        <div class="tile-price">£100 <span style="font-size:0.9rem;color:var(--text-muted)">per tooth</span></div>
+      </div>
+    </div>
+
+    <div class="tile"
+      data-name="Star"
+      data-desc="Full star cut-out design across the face of the cap. Bold and distinctive."
+      data-img=""
+      data-silver="120" data-dental="140" data-9k="170" data-14k="230" data-18k="270"
+      data-ch="false"
+      onclick="openLightbox(this)">
+      <div class="tile-img-placeholder"><span>◆</span><small>Add photo</small></div>
+      <div class="tile-info">
+        <div class="tile-name">Star</div>
+        <div class="tile-desc">Full star cut-out design across the face of the cap.</div>
+        <div class="tile-from">From</div>
+        <div class="tile-price">£120 <span style="font-size:0.9rem;color:var(--text-muted)">per tooth</span></div>
+      </div>
+    </div>
+
+    <div class="tile"
+      data-name="Chrome Hearts Cross"
+      data-desc="Cap featuring the Chrome Hearts cross motif. Available in silver and dental white gold only — not available in solid gold."
+      data-img=""
+      data-silver="150" data-dental="200" data-9k="null" data-14k="null" data-18k="null"
+      data-ch="true"
+      onclick="openLightbox(this)">
+      <div class="tile-img-placeholder"><span>◆</span><small>Add photo</small></div>
+      <div class="tile-info">
+        <div class="tile-name">Chrome Hearts Cross</div>
+        <div class="tile-desc">Chrome Hearts cross motif. Silver &amp; dental white gold only.</div>
+        <div class="tile-from">From</div>
+        <div class="tile-price">£150 <span style="font-size:0.9rem;color:var(--text-muted)">per tooth</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="notes-wrap">
+  <div class="notes-title">Notes</div>
+  <div class="note">All prices are per tooth. Ask at consultation for full set pricing across 6–8 teeth.</div>
+  <div class="note">A £30 deposit is required to secure your consultation, deducted from your final balance.</div>
+  <div class="note">Production timelines vary by design and material and are confirmed at consultation.</div>
+  <div class="note">Bespoke and custom designs are quoted individually — book a consultation to discuss.</div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
+  <div class="lightbox-inner" id="lb-inner">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <div class="lb-img-placeholder" id="lb-img">◆</div>
+    <div class="lb-body">
+      <div class="lb-name" id="lb-name"></div>
+      <div class="lb-desc" id="lb-desc"></div>
+      <div class="lb-divider"></div>
+      <div class="lb-mat-label">Select material</div>
+      <div class="lb-mat-btns" id="lb-mats"></div>
+      <div class="lb-price-label">Price per tooth</div>
+      <div class="lb-price" id="lb-price"></div>
+      <div class="lb-unavail" id="lb-unavail" style="display:none">Not available in this material</div>
+      <div class="lb-price-note">Starting price. Final quote confirmed at consultation.</div>
+      <div class="lb-actions">
+        <a href="booking.html" class="btn btn-chrome">Book a Consultation</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-band">
+  <span class="section-label" style="display:block;margin-bottom:1rem">Ready to order?</span>
+  <h2>Book a consultation</h2>
+  <p>All designs made to order. Final quote confirmed in person.</p>
+  <a href="booking.html" class="btn btn-chrome">Book Now</a>
+</div>
+
+<footer>
+  <span class="footer-logo">Diamandi</span>
+  <ul class="footer-links">
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="pricelist.html">Price List</a></li>
+    <li><a href="booking.html">Book</a></li>
+    <li><a href="terms.html">T&amp;Cs</a></li>
+  </ul>
+  <span class="footer-copy">&copy; 2025 Diamandi Jewellery</span>
+</footer>
+
+<script>
+const materials = [
+  { key: 'silver', label: 'Silver' },
+  { key: 'dental', label: 'Dental Gold' },
+  { key: '9k', label: '9ct Gold' },
+  { key: '14k', label: '14ct Gold' },
+  { key: '18k', label: '18ct Gold' }
+];
+
+let currentData = null;
+let currentMat = 'silver';
+
+function openLightbox(el) {
+  currentData = el.dataset;
+  currentMat = 'silver';
+
+  const imgEl = el.querySelector('img');
+  const imgWrap = document.getElementById('lb-img');
+  if (imgEl) {
+    const newImg = document.createElement('img');
+    newImg.className = 'lb-img';
+    newImg.id = 'lb-img';
+    newImg.src = imgEl.src;
+    imgWrap.parentNode.replaceChild(newImg, imgWrap);
+  } else {
+    imgWrap.className = 'lb-img-placeholder';
+    imgWrap.id = 'lb-img';
+    imgWrap.textContent = '◆';
+  }
+
+  document.getElementById('lb-name').textContent = el.dataset.name;
+  document.getElementById('lb-desc').textContent = el.dataset.desc;
+
+  const matsEl = document.getElementById('lb-mats');
+  matsEl.innerHTML = '';
+  materials.forEach(m => {
+    const isNull = el.dataset[m.key] === 'null' || !el.dataset[m.key];
+    const btn = document.createElement('button');
+    btn.className = 'lb-mat-btn' + (m.key === 'silver' ? ' active' : '');
+    btn.textContent = m.label;
+    if (isNull) btn.style.opacity = '0.35';
+    btn.onclick = () => selectMat(m.key, btn);
+    matsEl.appendChild(btn);
+  });
+
+  updatePrice('silver');
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function selectMat(key, btn) {
+  document.querySelectorAll('.lb-mat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentMat = key;
+  updatePrice(key);
+}
+
+function updatePrice(key) {
+  const val = currentData[key];
+  const priceEl = document.getElementById('lb-price');
+  const unavailEl = document.getElementById('lb-unavail');
+  if (!val || val === 'null') {
+    priceEl.textContent = '';
+    unavailEl.style.display = 'block';
+  } else {
+    priceEl.textContent = '£' + val;
+    unavailEl.style.display = 'none';
+  }
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeLightboxOutside(e) {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+function openMenu() { document.getElementById('mobile-menu').classList.add('open'); }
+function closeMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
+</script>
+</body>
+</html>
