@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diamandi Jewellery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,300;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --chrome: #b8c4cf;
+    --chrome-bright: #dde5ec;
+    --chrome-dim: #5a6a7a;
+    --blue-glow: #1e5580;
+    --dark: #04080d;
+    --dark-2: #070d14;
+    --dark-3: #0c1620;
+    --text: #cdd8e3;
+    --text-muted: #5a6e80;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--dark); color: var(--text); font-family: 'Rajdhani', sans-serif; font-weight: 400; overflow-x: hidden; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 4rem;
+    background: linear-gradient(to bottom, rgba(4,8,13,0.97), transparent);
+  }
+  .nav-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome-bright); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--chrome-bright); }
+
+  .hero {
+    height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    position: relative; overflow: hidden;
+    background: radial-gradient(ellipse at 50% 55%, rgba(14,55,100,0.4) 0%, rgba(4,8,13,1) 65%);
+  }
+  .hero-logo-wrap { width: 220px; height: 220px; margin-bottom: 3rem; }
+  .hero-logo-wrap img, .hero-logo-wrap video { width: 100%; height: 100%; object-fit: contain; }
+  .hero-eyebrow { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.45em; text-transform: uppercase; color: var(--chrome-dim); margin-bottom: 1rem; }
+  .hero-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 300; letter-spacing: 0.4em; text-transform: uppercase; line-height: 1; color: var(--chrome-bright); margin-bottom: 0.4rem; }
+  .hero-subtitle { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.5em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 3.5rem; }
+  .hero-cta { display: inline-flex; gap: 1.5rem; }
+
+  .btn { display: inline-block; padding: 0.85rem 2.5rem; font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; }
+  .btn-chrome { background: linear-gradient(135deg, var(--chrome-bright) 0%, var(--chrome) 60%, var(--chrome-dim) 100%); color: var(--dark); }
+  .btn-chrome:hover { background: var(--chrome-bright); }
+  .btn-outline { background: transparent; color: var(--chrome); border: 1px solid rgba(184,196,207,0.3); }
+  .btn-outline:hover { background: rgba(184,196,207,0.07); border-color: var(--chrome); color: var(--chrome-bright); }
+
+  .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--text-muted); }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, transparent, var(--chrome-dim)); animation: scrollpulse 2s ease-in-out infinite; }
+  @keyframes scrollpulse { 0%,100%{opacity:0.2} 50%{opacity:0.8} }
+
+  .section-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.45em; text-transform: uppercase; color: var(--chrome-dim); margin-bottom: 1rem; display: block; }
+  .section-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 1.5rem; }
+  .chrome-rule { width: 50px; height: 1px; background: linear-gradient(to right, var(--blue-glow), var(--chrome-dim)); margin-bottom: 2.5rem; }
+
+  .intro { background: var(--dark-2); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; max-width: 1200px; margin: 0 auto; padding: 7rem 4rem; }
+  .intro-text p { font-size: 1rem; font-weight: 400; line-height: 1.9; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .intro-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .stat { border-left: 1px solid rgba(90,106,122,0.4); padding-left: 1.5rem; }
+  .stat-number { font-family: 'Rajdhani', sans-serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 0.05em; color: var(--chrome-bright); display: block; }
+  .stat-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+
+  .process { max-width: 1200px; margin: 0 auto; padding: 7rem 4rem; }
+  .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem; }
+  .step { text-align: center; padding: 2.5rem 1.5rem; border: 1px solid rgba(90,106,122,0.2); background: var(--dark-2); transition: border-color 0.3s, background 0.3s; }
+  .step:hover { border-color: rgba(184,196,207,0.3); background: rgba(14,55,100,0.1); }
+  .step-num { font-family: 'Rajdhani', sans-serif; font-size: 3rem; font-weight: 300; color: rgba(90,106,122,0.3); display: block; margin-bottom: 1rem; }
+  .step h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 0.8rem; }
+  .step p { font-size: 0.9rem; line-height: 1.8; color: var(--text-muted); }
+
+  .cta-band { background: var(--dark-2); text-align: center; padding: 6rem 4rem; border-top: 1px solid rgba(90,106,122,0.15); }
+  .cta-band p { font-size: 0.95rem; color: var(--text-muted); max-width: 500px; margin: 0 auto 2.5rem; line-height: 2; }
+
+  footer { background: #020508; padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(90,106,122,0.2); }
+  .footer-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--chrome-bright); }
+  .footer-copy { font-size: 0.65rem; color: #2a3a4a; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; } .nav-links { display: none; }
+    .intro { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
+    .process { padding: 5rem 1.5rem; } .process-steps { grid-template-columns: 1fr 1fr; }
+    .hero-cta { flex-direction: column; align-items: center; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Diamandi</a>
+  <ul class="nav-links">
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="booking.html">Book</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-logo-wrap">
+    <!-- Swap for your video: <video autoplay loop muted playsinline><source src="logo.mp4" type="video/mp4"></video> -->
+    <img src="still_bluebg.PNG" alt="Diamandi D logo">
+  </div>
+  <p class="hero-eyebrow">Custom Grillz · Handcrafted</p>
+  <h1 class="hero-title">Diamandi</h1>
+  <p class="hero-subtitle">Jewellery</p>
+  <div class="hero-cta">
+    <a href="portfolio.html" class="btn btn-chrome">View Portfolio</a>
+    <a href="booking.html" class="btn btn-outline">Book a Consultation</a>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>Explore</div>
+</section>
+
+<div style="background:var(--dark-2);border-top:1px solid rgba(90,106,122,0.15)">
+  <div class="intro">
+    <div class="intro-text">
+      <span class="section-label">The Craft</span>
+      <h2 class="section-title">Grillz made for<br>those who lead</h2>
+      <div class="chrome-rule"></div>
+      <p>Every set from Diamandi is custom-fitted, hand-crafted, and made to last. We work in gold, silver, and diamond-set pieces — each one tailored to your exact dental impression.</p>
+      <p>No off-the-shelf. No shortcuts. Just pure jewellery art worn on your teeth.</p>
+      <a href="portfolio.html" class="btn btn-outline" style="margin-top:0.5rem">See the work</a>
+    </div>
+    <div class="intro-stats">
+      <div class="stat"><span class="stat-number">100%</span><span class="stat-label">Custom Fit</span></div>
+      <div class="stat"><span class="stat-number">14k+</span><span class="stat-label">Gold Options</span></div>
+      <div class="stat"><span class="stat-number">VVS</span><span class="stat-label">Diamond Grade</span></div>
+      <div class="stat"><span class="stat-number">7–10</span><span class="stat-label">Day Turnaround</span></div>
+    </div>
+  </div>
+</div>
+
+<div style="background:var(--dark)">
+  <div class="process">
+    <span class="section-label">How It Works</span>
+    <h2 class="section-title">From impression to iconic</h2>
+    <div class="chrome-rule"></div>
+    <div class="process-steps">
+      <div class="step"><span class="step-num">01</span><h3>Consultation</h3><p>Book a free consultation. We discuss your style, metal, stone choices and budget.</p></div>
+      <div class="step"><span class="step-num">02</span><h3>Impression</h3><p>We take a dental mould to ensure a perfect, secure fit unique to you.</p></div>
+      <div class="step"><span class="step-num">03</span><h3>Crafting</h3><p>Your grillz are hand-cast and set by our jewellers. 7–10 days for most pieces.</p></div>
+      <div class="step"><span class="step-num">04</span><h3>Delivery</h3><p>Collected in person or shipped in signature packaging, fully insured.</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="cta-band">
+  <span class="section-label" style="display:block;margin-bottom:1rem">Ready?</span>
+  <h2 class="section-title" style="margin-bottom:0.5rem">Start your piece today</h2>
+  <p>Consultations are free. All styles, all metals, fully bespoke.</p>
+  <a href="booking.html" class="btn btn-chrome">Book a Free Consultation</a>
+</div>
+
+<footer>
+  <span class="footer-logo">Diamandi</span>
+  <ul class="footer-links">
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="pricing.html">Pricing</a></li>
+    <li><a href="booking.html">Book</a></li>
+  </ul>
+  <span class="footer-copy">&copy; 2025 Diamandi Jewellery</span>
+</footer>
+</body>
+</html>
