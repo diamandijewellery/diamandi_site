@@ -18,8 +18,14 @@
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 4rem; background: rgba(4,8,13,0.97); border-bottom: 1px solid rgba(90,106,122,0.2); }
   .nav-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome-bright); text-decoration: none; }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.25em; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; transition: color 0.3s; }
   .nav-links a:hover, .nav-links a.active { color: var(--chrome-bright); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--chrome-bright); }
+  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(4,8,13,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { color: var(--chrome-bright); text-decoration: none; font-size: 1.5rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; }
+  .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--chrome-bright); font-size: 1.5rem; cursor: pointer; }
 
   .page-header { padding: 10rem 4rem 4rem; background: var(--dark-2); text-align: center; border-bottom: 1px solid rgba(90,106,122,0.15); }
   .section-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.45em; text-transform: uppercase; color: var(--chrome-dim); margin-bottom: 1rem; display: block; }
@@ -42,34 +48,21 @@
   .contact-block a:hover { color: var(--chrome-bright); }
 
   .cal-embed-section { border: 1px solid rgba(90,106,122,0.2); background: var(--dark-2); overflow: hidden; }
-  .cal-setup-notice { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 3rem; text-align: center; gap: 1.5rem; }
-  .cal-setup-notice h3 { font-family: 'Rajdhani', sans-serif; font-size: 1.5rem; font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--chrome); }
-  .cal-setup-notice p { font-size: 0.85rem; color: var(--text-muted); line-height: 2; max-width: 420px; }
-  .cal-setup-notice code { display: inline; background: rgba(30,85,128,0.15); border: 1px solid rgba(90,106,122,0.3); color: var(--chrome-bright); font-size: 0.8rem; padding: 0.1rem 0.5rem; }
-  .setup-steps { text-align: left; list-style: none; counter-reset: step; }
-  .setup-steps li { font-size: 0.85rem; font-weight: 400; color: var(--text-muted); line-height: 2.2; display: flex; gap: 0.8rem; counter-increment: step; }
-  .setup-steps li::before { content: counter(step); color: var(--chrome); font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 600; flex-shrink: 0; width: 1.2rem; }
 
   footer { background: #020508; padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(90,106,122,0.2); }
   .footer-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome); }
   .footer-links { display: flex; gap: 2rem; list-style: none; }
-  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; }
+  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; }
   .footer-links a:hover { color: var(--chrome-bright); }
-  .footer-copy { font-size: 0.65rem; color: #2a3a4a; }
+  .footer-copy { font-size: 0.65rem; color: #3a4a5a; }
 
   @media (max-width: 768px) {
     nav { padding: 1.2rem 1.5rem; } .nav-links { display: none; } .hamburger { display: flex; }
     .booking-layout { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
     .booking-info { padding-right: 0; margin-bottom: 2.5rem; }
     footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
   }
-
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--chrome-bright); }
-  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(4,8,13,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a { color: var(--chrome-bright); text-decoration: none; font-size: 1.5rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; }
-  .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--chrome-bright); font-size: 1.5rem; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -80,6 +73,7 @@
     <li><a href="portfolio.html">Portfolio</a></li>
     <li><a href="pricelist.html">Price List</a></li>
     <li><a href="booking.html" class="active">Book</a></li>
+    <li><a href="terms.html">T&amp;Cs</a></li>
   </ul>
   <div class="hamburger" onclick="openMenu()">
     <span></span><span></span><span></span>
@@ -91,6 +85,7 @@
   <a href="portfolio.html" onclick="closeMenu()">Portfolio</a>
   <a href="pricelist.html" onclick="closeMenu()">Price List</a>
   <a href="booking.html" onclick="closeMenu()">Book</a>
+  <a href="terms.html" onclick="closeMenu()">T&amp;Cs</a>
 </div>
 
 <div class="page-header">
@@ -105,7 +100,7 @@
     <ul class="info-list">
       <li>Discuss design, metal &amp; stones</li>
       <li>Dental impression taken same visit</li>
-      <li>Exact quote confirmedt</li>
+      <li>Exact quote confirmed</li>
     </ul>
     <div class="contact-block">
       <h3>Prefer to message first?</h3>
@@ -119,7 +114,7 @@
     <script type="text/javascript">
       (function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];typeof namespace==="string"?(cal.ns[namespace]=api)&&p(api,ar):p(cal,ar);return}p(cal,ar)};})(window,"https://app.cal.com/embed/embed.js","init");
       Cal("init",{origin:"https://cal.eu"});
-      Cal("inline",{elementOrSelector:"#cal-embed",calLink:"diamandi.jewellery/mould-appointment",layout:"month_view"});
+      Cal("inline",{elementOrSelector:"#cal-embed",calLink:"diamandi.j/mould-appointment",layout:"month_view"});
       Cal("ui",{"theme":"dark","styles":{"branding":{"brandColor":"#b8c4cf"}},"hideEventTypeDetails":false});
     </script>
   </div>
@@ -135,5 +130,10 @@
   </ul>
   <span class="footer-copy">&copy; 2025 Diamandi Jewellery</span>
 </footer>
+
+<script>
+function openMenu() { document.getElementById('mobile-menu').classList.add('open'); }
+function closeMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
+</script>
 </body>
 </html>
