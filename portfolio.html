@@ -29,7 +29,7 @@
 
   .page-header { padding: 10rem 4rem 5rem; background: var(--dark-2); text-align: center; border-bottom: 1px solid rgba(90,106,122,0.15); }
   .section-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.45em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; display: block; }
-  .page-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(2.5rem,6vw,4.5rem); font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--chrome-bright); }
+  .page-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(2.5rem,6vw,4.5rem); font-weight: 300; letter-spacing: 0.2em; text-transform: uppercase; color: var(--chrome-bright); text-align: center; width: 100%; display: block; }
 
   .portfolio-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; }
   .portfolio-item { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--dark-3); cursor: pointer; }
@@ -43,7 +43,6 @@
   .overlay-tag { font-size: 0.6rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--chrome-dim); margin-bottom: 0.4rem; }
   .overlay-title { font-family: 'Rajdhani', sans-serif; font-size: 1.2rem; font-weight: 500; letter-spacing: 0.1em; color: var(--chrome-bright); }
 
-  /* LIGHTBOX */
   .lightbox { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(4,8,13,0.96); align-items: center; justify-content: center; padding: 2rem; }
   .lightbox.open { display: flex; }
   .lightbox-inner { display: flex; max-width: 900px; width: 100%; max-height: 90vh; background: var(--dark-2); border: 1px solid rgba(90,106,122,0.25); overflow: hidden; position: relative; }
@@ -66,8 +65,8 @@
   .btn-outline { background: transparent; color: var(--chrome-bright); border: 1px solid rgba(221,229,236,0.35); }
   .btn-outline:hover { background: rgba(184,196,207,0.07); border-color: var(--chrome-bright); }
 
-  .cta-band { background: var(--dark-2); text-align: center; padding: 6rem 4rem; border-top: 1px solid rgba(90,106,122,0.15); }
-  .cta-band h2 { font-family: 'Rajdhani', sans-serif; font-size: 2.5rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 0.5rem; text-align: center; width: 100%; display: block; }
+  .cta-band { background: var(--dark-2); text-align: center; padding: 5rem 4rem; border-top: 1px solid rgba(90,106,122,0.15); }
+  .cta-band h2 { font-family: 'Rajdhani', sans-serif; font-size: 2.2rem; font-weight: 300; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 0.5rem; text-align: center; width: 100%; display: block; }
   .cta-band p { font-size: 0.95rem; font-weight: 500; color: var(--text-muted); max-width: 400px; margin: 0 auto 2rem; line-height: 2; }
 
   footer { background: #020508; padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(90,106,122,0.2); }
@@ -99,6 +98,7 @@
     <li><a href="portfolio.html" class="active">Portfolio</a></li>
     <li><a href="pricelist.html">Price List</a></li>
     <li><a href="booking.html">Book</a></li>
+    <li><a href="terms.html">T&amp;Cs</a></li>
   </ul>
   <div class="hamburger" onclick="openMenu()">
     <span></span><span></span><span></span>
@@ -110,20 +110,13 @@
   <a href="portfolio.html" onclick="closeMenu()">Portfolio</a>
   <a href="pricelist.html" onclick="closeMenu()">Price List</a>
   <a href="booking.html" onclick="closeMenu()">Book</a>
+  <a href="terms.html" onclick="closeMenu()">T&amp;Cs</a>
 </div>
 
 <div class="page-header">
   <h1 class="page-title">Portfolio</h1>
 </div>
 
-
-<!--
-  TO ADD YOUR PHOTOS:
-  1. Upload photos to the images/ folder on GitHub
-  2. Replace <div class="portfolio-placeholder">...</div> with <img src="images/yourphoto.jpg" alt="...">
-  3. Update data-title, data-tag, data-desc, data-price on each .portfolio-item
-  4. Set data-custom="true" on any bespoke pieces (shows Price on Request)
--->
 <div class="portfolio-grid" id="portfolio-grid">
 
   <div class="portfolio-item" data-category="gold" data-tag="Gold" data-title="14ct Yellow Gold Bottom 6" data-desc="Six-piece bottom set in 14ct yellow gold. Full cap finish with high polish." data-price="from £180 per tooth" data-custom="false" onclick="openLightbox(this)">
@@ -173,7 +166,6 @@
 
 </div>
 
-<!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightboxOutside(event)">
   <div class="lightbox-inner" id="lightbox-inner">
     <button class="lightbox-close" onclick="closeLightbox()">✕</button>
@@ -204,7 +196,7 @@
 <footer>
   <span class="footer-logo">Diamandi</span>
   <ul class="footer-links">
-        <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
     <li><a href="pricelist.html">Price List</a></li>
     <li><a href="booking.html">Book</a></li>
     <li><a href="terms.html">T&amp;Cs</a></li>
@@ -213,7 +205,6 @@
 </footer>
 
 <script>
-
 function openLightbox(el) {
   const isCustom = el.dataset.custom === 'true';
   const imgEl = el.querySelector('img');
