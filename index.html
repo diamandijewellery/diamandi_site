@@ -32,8 +32,13 @@
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a { color: rgba(221,229,236,0.75); text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; transition: color 0.3s; }
   .nav-links a:hover { color: var(--chrome-bright); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--chrome-bright); }
+  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(4,8,13,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { color: var(--chrome-bright); text-decoration: none; font-size: 1.5rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; }
+  .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--chrome-bright); font-size: 1.5rem; cursor: pointer; }
 
-  /* HERO */
   .hero {
     height: 100vh; width: 100%;
     display: flex; flex-direction: column;
@@ -44,45 +49,19 @@
     background-size: cover;
     background-position: center top;
   }
-  /* Dark overlay so text is legible over the photo */
   .hero::before {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(4,8,13,0.45) 0%,
-      rgba(4,8,13,0.3) 40%,
-      rgba(4,8,13,0.65) 75%,
-      rgba(4,8,13,0.92) 100%
-    );
+    background: linear-gradient(to bottom, rgba(4,8,13,0.45) 0%, rgba(4,8,13,0.3) 40%, rgba(4,8,13,0.65) 75%, rgba(4,8,13,0.92) 100%);
     z-index: 0;
   }
   .hero > * { position: relative; z-index: 1; }
 
   .hero-logo-wrap { width: 300px; height: 300px; margin-bottom: 1.5rem; }
   .hero-logo-wrap img, .hero-logo-wrap video { width: 100%; height: 100%; object-fit: contain; }
-
-  .hero-title {
-    font-family: 'Rajdhani', sans-serif;
-    font-size: clamp(3.5rem, 9vw, 7rem);
-    font-weight: 300; letter-spacing: 0.4em; text-transform: uppercase;
-    line-height: 1; color: var(--chrome-bright);
-    margin-bottom: 0.6rem;
-    text-shadow: 0 2px 30px rgba(4,8,13,0.8);
-  }
-  .hero-subtitle {
-    font-size: 1rem; font-weight: 500;
-    letter-spacing: 0.35em; text-transform: uppercase;
-    color: var(--chrome-bright);
-    margin-bottom: 0.5rem;
-    text-shadow: 0 1px 10px rgba(4,8,13,0.9);
-  }
-  .hero-eyebrow {
-    font-size: 0.7rem; font-weight: 600;
-    letter-spacing: 0.45em; text-transform: uppercase;
-    color: rgba(200,216,232,0.7);
-    margin-bottom: 2.5rem;
-  }
+  .hero-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 300; letter-spacing: 0.4em; text-transform: uppercase; line-height: 1; color: var(--chrome-bright); margin-bottom: 0.6rem; text-shadow: 0 2px 30px rgba(4,8,13,0.8); }
+  .hero-subtitle { font-size: 1rem; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 0.5rem; text-shadow: 0 1px 10px rgba(4,8,13,0.9); }
+  .hero-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.45em; text-transform: uppercase; color: rgba(200,216,232,0.7); margin-bottom: 2.5rem; }
   .hero-cta { display: inline-flex; gap: 1.5rem; margin-bottom: 3.5rem; }
 
   .btn { display: inline-block; padding: 0.85rem 2.5rem; font-family: 'Rajdhani', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; }
@@ -91,16 +70,10 @@
   .btn-outline { background: rgba(4,8,13,0.3); color: var(--chrome-bright); border: 1px solid rgba(221,229,236,0.5); backdrop-filter: blur(4px); }
   .btn-outline:hover { background: rgba(184,196,207,0.15); border-color: var(--chrome-bright); }
 
-  /* Scroll arrow */
-  .scroll-arrow {
-    display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
-    color: rgba(221,229,236,0.5);
-    animation: bounce 2s ease-in-out infinite;
-  }
+  .scroll-arrow { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; color: rgba(221,229,236,0.5); animation: bounce 2s ease-in-out infinite; }
   .scroll-arrow svg { width: 24px; height: 24px; stroke: rgba(221,229,236,0.5); fill: none; stroke-width: 1.5; }
   @keyframes bounce { 0%,100%{transform:translateY(0);opacity:0.4} 50%{transform:translateY(6px);opacity:0.9} }
 
-  /* REST OF PAGE */
   .section-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.45em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; display: block; }
   .section-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 1.5rem; }
   .chrome-rule { width: 50px; height: 1px; background: linear-gradient(to right, var(--blue-glow), var(--chrome-dim)); margin-bottom: 2.5rem; }
@@ -144,13 +117,6 @@
     footer { flex-direction: column; gap: 1.5rem; text-align: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; }
   }
-
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--chrome-bright); }
-  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(4,8,13,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
-  .mobile-menu.open { display: flex; }
-  .mobile-menu a { color: var(--chrome-bright); text-decoration: none; font-size: 1.5rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; }
-  .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--chrome-bright); font-size: 1.5rem; cursor: pointer; }
 </style>
 </head>
 <body>
@@ -158,7 +124,7 @@
 <nav>
   <a href="index.html" class="nav-logo">Diamandi</a>
   <ul class="nav-links">
-        <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="portfolio.html">Portfolio</a></li>
     <li><a href="pricelist.html">Price List</a></li>
     <li><a href="booking.html">Book</a></li>
     <li><a href="terms.html">T&amp;Cs</a></li>
@@ -173,11 +139,11 @@
   <a href="portfolio.html" onclick="closeMenu()">Portfolio</a>
   <a href="pricelist.html" onclick="closeMenu()">Price List</a>
   <a href="booking.html" onclick="closeMenu()">Book</a>
+  <a href="terms.html" onclick="closeMenu()">T&amp;Cs</a>
 </div>
 
 <section class="hero">
   <div class="hero-logo-wrap">
-    <!-- Swap for video: <video autoplay loop muted playsinline><source src="images/logo.mp4" type="video/mp4"></video> -->
     <img src="images/d_nobackground.PNG" alt="Diamandi D logo">
   </div>
   <h1 class="hero-title">Diamandi</h1>
@@ -265,7 +231,12 @@
     <li><a href="booking.html">Book</a></li>
     <li><a href="terms.html">T&amp;Cs</a></li>
   </ul>
-  <span class="footer-copy">&copy; 2024 Diamandi Jewellery</span>
+  <span class="footer-copy">&copy; 2025 Diamandi Jewellery</span>
 </footer>
+
+<script>
+function openMenu() { document.getElementById('mobile-menu').classList.add('open'); }
+function closeMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
+</script>
 </body>
 </html>
