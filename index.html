@@ -5,13 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Diamandi Jewellery</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="images/logo/d_nobackground.PNG">
 <meta property="og:title" content="Diamandi Jewellery">
 <meta property="og:description" content="Custom Grillz · Handcrafted">
 <meta property="og:image" content="https://diamandi.co.uk/images/logo/still_bluebg.PNG">
 <meta property="og:url" content="https://diamandi.co.uk">
 <style>
+  @font-face {
+    font-family: 'RocGrotesk';
+    src: url('fonts/Roc Grotesk Bold.otf') format('opentype');
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: 'RocGrotesk';
+    src: url('fonts/Roc Grotesk Regular.otf') format('opentype');
+    font-weight: 400;
+  }
+
   :root {
     --chrome: #b8c4cf;
     --chrome-bright: #dde5ec;
@@ -33,7 +44,7 @@
     padding: 1.5rem 4rem;
     background: linear-gradient(to bottom, rgba(4,8,13,0.85), transparent);
   }
-  .nav-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome-bright); text-decoration: none; }
+  .nav-logo { font-family: 'RocGrotesk', sans-serif; font-size: 1.3rem; font-weight: 700; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome-bright); text-decoration: none; }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a { color: rgba(221,229,236,0.75); text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; transition: color 0.3s; }
   .nav-links a:hover { color: var(--chrome-bright); }
@@ -41,7 +52,7 @@
   .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--chrome-bright); }
   .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(4,8,13,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
   .mobile-menu.open { display: flex; }
-  .mobile-menu a { color: var(--chrome-bright); text-decoration: none; font-size: 1.5rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; }
+  .mobile-menu a { font-family: 'RocGrotesk', sans-serif; color: var(--chrome-bright); text-decoration: none; font-size: 1.5rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; }
   .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--chrome-bright); font-size: 1.5rem; cursor: pointer; }
 
   .hero {
@@ -64,7 +75,7 @@
 
   .hero-logo-wrap { width: 300px; height: 300px; margin-bottom: 1.5rem; }
   .hero-logo-wrap img, .hero-logo-wrap video { width: 100%; height: 100%; object-fit: contain; }
-  .hero-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 300; letter-spacing: 0.4em; text-transform: uppercase; line-height: 1; color: var(--chrome-bright); margin-bottom: 0.6rem; text-shadow: 0 2px 30px rgba(4,8,13,0.8); }
+  .hero-title { font-family: 'RocGrotesk', sans-serif; font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 700; letter-spacing: 0.4em; text-transform: uppercase; line-height: 1; color: var(--chrome-bright); margin-bottom: 0.6rem; text-shadow: 0 2px 30px rgba(4,8,13,0.8); }
   .hero-subtitle { font-size: 1rem; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 0.5rem; text-shadow: 0 1px 10px rgba(4,8,13,0.9); }
   .hero-eyebrow { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.45em; text-transform: uppercase; color: rgba(200,216,232,0.7); margin-bottom: 2.5rem; }
   .hero-cta { display: inline-flex; gap: 1.5rem; margin-bottom: 3.5rem; }
@@ -80,29 +91,29 @@
   @keyframes bounce { 0%,100%{transform:translateY(0);opacity:0.4} 50%{transform:translateY(6px);opacity:0.9} }
 
   .section-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.45em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; display: block; }
-  .section-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 1.5rem; }
+  .section-title { font-family: 'RocGrotesk', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 1.5rem; }
   .chrome-rule { width: 50px; height: 1px; background: linear-gradient(to right, var(--blue-glow), var(--chrome-dim)); margin-bottom: 2.5rem; }
 
   .intro { background: var(--dark-2); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; max-width: 1200px; margin: 0 auto; padding: 7rem 4rem; }
   .intro-text p { font-size: 1.05rem; font-weight: 500; line-height: 2; color: #a8bece; margin-bottom: 1.5rem; }
   .intro-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
   .stat { border-left: 1px solid rgba(138,160,180,0.35); padding-left: 1.5rem; }
-  .stat-number { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--chrome-bright); display: block; margin-bottom: 0.4rem; line-height: 1.3; }
+  .stat-number { font-family: 'RocGrotesk', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--chrome-bright); display: block; margin-bottom: 0.4rem; line-height: 1.3; }
   .stat-label { font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); line-height: 1.5; }
 
   .process { max-width: 1200px; margin: 0 auto; padding: 7rem 4rem; }
   .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 3rem; }
   .step { text-align: center; padding: 2.5rem 1.5rem; border: 1px solid rgba(90,106,122,0.2); background: var(--dark-2); transition: border-color 0.3s, background 0.3s; }
   .step:hover { border-color: rgba(184,196,207,0.3); background: rgba(14,55,100,0.1); }
-  .step-num { font-family: 'Space Grotesk', sans-serif; font-size: 3rem; font-weight: 300; color: rgba(138,160,180,0.55); display: block; margin-bottom: 1rem; }
-  .step h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.15rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 0.8rem; }
+  .step-num { font-family: 'RocGrotesk', sans-serif; font-size: 3rem; font-weight: 400; color: rgba(138,160,180,0.55); display: block; margin-bottom: 1rem; }
+  .step h3 { font-family: 'RocGrotesk', sans-serif; font-size: 1.15rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 0.8rem; }
   .step p { font-size: 0.95rem; font-weight: 500; line-height: 1.8; color: var(--text-muted); }
 
   .cta-band { background: var(--dark-2); text-align: center; padding: 6rem 4rem; border-top: 1px solid rgba(90,106,122,0.15); }
   .cta-band p { font-size: 1rem; font-weight: 500; color: #a8bece; max-width: 500px; margin: 0 auto 2.5rem; line-height: 2; }
 
   footer { background: #020508; padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(90,106,122,0.2); }
-  .footer-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome); }
+  .footer-logo { font-family: 'RocGrotesk', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome); }
   .footer-links { display: flex; gap: 2rem; list-style: none; }
   .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; }
   .footer-links a:hover { color: var(--chrome-bright); }
