@@ -4,62 +4,158 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Book — Diamandi Jewellery</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+  @font-face {
+    font-family: 'RocGrotesk';
+    src: url('fonts/Roc Grotesk Black.otf') format('opentype');
+    font-weight: 900;
+  }
+  @font-face {
+    font-family: 'RocGrotesk';
+    src: url('fonts/Roc Grotesk Regular.otf') format('opentype');
+    font-weight: 400;
+  }
+
   :root {
     --chrome: #b8c4cf; --chrome-bright: #dde5ec; --chrome-dim: #5a6a7a;
     --blue-glow: #1e5580; --dark: #04080d; --dark-2: #070d14; --dark-3: #0c1620;
-    --text: #cdd8e3; --text-muted: #5a6e80;
+    --text: #cdd8e3; --text-muted: #8aa0b4;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--dark); color: var(--text); font-family: 'Rajdhani', sans-serif; font-weight: 400; overflow-x: hidden; }
+  body { background: var(--dark); color: var(--text); font-family: 'RocGrotesk', sans-serif; font-weight: 400; overflow-x: hidden; }
 
+  /* ── NAV ── */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 4rem; background: rgba(4,8,13,0.97); border-bottom: 1px solid rgba(90,106,122,0.2); }
-  .nav-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome-bright); text-decoration: none; }
+  .nav-logo { font-family: 'RocGrotesk', sans-serif; font-size: 1.3rem; font-weight: 900; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome-bright); text-decoration: none; }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase; transition: color 0.3s; font-family: 'RocGrotesk', sans-serif; }
   .nav-links a:hover, .nav-links a.active { color: var(--chrome-bright); }
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; z-index: 98; }
   .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--chrome-bright); }
-  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(4,8,13,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(4,8,13,0.98); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
   .mobile-menu.open { display: flex; }
-  .mobile-menu a { color: var(--chrome-bright); text-decoration: none; font-size: 1.5rem; font-weight: 300; letter-spacing: 0.35em; text-transform: uppercase; }
+  .mobile-menu a { font-family: 'RocGrotesk', sans-serif; color: var(--chrome-bright); text-decoration: none; font-size: 1.5rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; }
   .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--chrome-bright); font-size: 1.5rem; cursor: pointer; }
 
-  .page-header { padding: 10rem 4rem 4rem; background: var(--dark-2); text-align: center; border-bottom: 1px solid rgba(90,106,122,0.15); }
-  .section-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.45em; text-transform: uppercase; color: var(--chrome-dim); margin-bottom: 1rem; display: block; }
-  .page-title { font-family: 'Rajdhani', sans-serif; font-size: clamp(1.8rem,4vw,3rem); font-weight: 300; letter-spacing: 0.1em; text-transform: uppercase; color: var(--chrome-bright); text-align: center; width: 100%; display: block; }
-  .page-sub { font-size: 0.9rem; color: var(--text-muted); margin-top: 1rem; line-height: 2; max-width: 500px; margin-left: auto; margin-right: auto; }
+  /* ── PAGE HEADER — compact ── */
+  .page-header {
+    padding: 6.5rem 4rem 2rem;   /* was 10rem / 4rem */
+    background: var(--dark-2);
+    text-align: center;
+    border-bottom: 1px solid rgba(90,106,122,0.15);
+  }
+  .page-title {
+    font-family: 'RocGrotesk', sans-serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);  /* smaller than before */
+    font-weight: 900;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--chrome-bright);
+  }
+  .page-sub {
+    font-family: 'RocGrotesk', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+  }
 
-  .booking-layout { display: grid; grid-template-columns: 1fr 2fr; max-width: 1200px; margin: 0 auto; padding: 5rem 4rem; align-items: start; gap: 0; }
-  .booking-info { padding-right: 4rem; }
-  .booking-info h2 { font-family: 'Rajdhani', sans-serif; font-size: 1.8rem; font-weight: 300; letter-spacing: 0.15em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 1rem; }
-  .chrome-rule { width: 40px; height: 1px; background: linear-gradient(to right, var(--blue-glow), var(--chrome-dim)); margin-bottom: 2rem; }
-  .booking-info p { font-size: 0.9rem; color: var(--text-muted); line-height: 2; margin-bottom: 1.5rem; }
+  /* ── LAYOUT ── */
+  .booking-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 4rem 5rem;
+    align-items: start;
+    gap: 0;
+  }
 
-  .info-list { list-style: none; margin-bottom: 2.5rem; }
-  .info-list li { font-size: 0.85rem; font-weight: 400; color: var(--text-muted); padding: 0.7rem 0; border-bottom: 1px solid rgba(90,106,122,0.1); display: flex; align-items: center; gap: 0.8rem; }
+  /* ── LEFT PANEL ── */
+  .booking-info {
+    padding-right: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .booking-info h2 {
+    font-family: 'RocGrotesk', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--chrome-bright);
+    margin-bottom: 0.75rem;
+  }
+  .chrome-rule { width: 40px; height: 1px; background: linear-gradient(to right, var(--blue-glow), var(--chrome-dim)); margin-bottom: 1.25rem; }
+  .booking-info > p {
+    font-family: 'RocGrotesk', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    line-height: 1.85;
+    margin-bottom: 1.25rem;
+  }
+
+  .info-list { list-style: none; margin-bottom: 0; }
+  .info-list li {
+    font-family: 'RocGrotesk', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(90,106,122,0.1);
+    display: flex; align-items: center; gap: 0.75rem;
+  }
   .info-list li::before { content: '◆'; color: var(--chrome-dim); font-size: 0.4rem; flex-shrink: 0; }
 
-  .contact-block { background: var(--dark-3); border: 1px solid rgba(90,106,122,0.2); padding: 1.5rem; }
-  .contact-block h3 { font-family: 'Rajdhani', sans-serif; font-size: 1rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--chrome); margin-bottom: 1rem; }
-  .contact-block a { display: block; font-size: 0.8rem; font-weight: 400; color: var(--text-muted); text-decoration: none; margin-bottom: 0.6rem; transition: color 0.3s; }
+  /* ── CONTACT BLOCK — now at bottom of left panel ── */
+  .contact-block {
+    background: var(--dark-3);
+    border: 1px solid rgba(90,106,122,0.2);
+    padding: 1.25rem;
+    margin-top: auto;   /* pushed to bottom inside flex column */
+  }
+  .contact-block h3 {
+    font-family: 'RocGrotesk', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--chrome);
+    margin-bottom: 0.75rem;
+  }
+  .contact-block a {
+    display: block;
+    font-family: 'RocGrotesk', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s;
+  }
   .contact-block a:hover { color: var(--chrome-bright); }
 
+  /* ── CAL EMBED ── */
   .cal-embed-section { border: 1px solid rgba(90,106,122,0.2); background: var(--dark-2); overflow: hidden; }
 
+  /* ── FOOTER ── */
   footer { background: #020508; padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(90,106,122,0.2); }
-  .footer-logo { font-family: 'Rajdhani', sans-serif; font-size: 1.1rem; font-weight: 600; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome); }
+  .footer-logo { font-family: 'RocGrotesk', sans-serif; font-size: 1.1rem; font-weight: 900; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome); }
   .footer-links { display: flex; gap: 2rem; list-style: none; }
-  .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; }
+  .footer-links a { font-family: 'RocGrotesk', sans-serif; color: var(--text-muted); text-decoration: none; font-size: 0.7rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; }
   .footer-links a:hover { color: var(--chrome-bright); }
-  .footer-copy { font-size: 0.65rem; color: #3a4a5a; }
+  .footer-copy { font-family: 'RocGrotesk', sans-serif; font-size: 0.65rem; color: #3a4a5a; }
 
+  /* ── MOBILE ── */
   @media (max-width: 768px) {
     nav { padding: 1.2rem 1.5rem; } .nav-links { display: none; } .hamburger { display: flex; }
-    .booking-layout { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+    .page-header { padding: 5.5rem 1.5rem 1.75rem; }
+    .booking-layout { grid-template-columns: 1fr; padding: 2.5rem 1.5rem 4rem; }
     .booking-info { padding-right: 0; margin-bottom: 2.5rem; }
+    .contact-block { margin-top: 2rem; }
     footer { flex-direction: column; gap: 1.5rem; text-align: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; }
   }
@@ -90,9 +186,11 @@
 
 <div class="page-header">
   <h1 class="page-title">Book a Consultation</h1>
+  <p class="page-sub">Custom Grillz · Handcrafted</p>
 </div>
 
 <div class="booking-layout">
+
   <div class="booking-info">
     <h2>What to expect</h2>
     <div class="chrome-rule"></div>
@@ -102,7 +200,9 @@
       <li>Dental impression taken same visit</li>
       <li>Exact quote confirmed</li>
     </ul>
-    <div class="contact-block">
+
+    <!-- Contact block moved to bottom -->
+    <div class="contact-block" style="margin-top: 2.5rem;">
       <h3>Prefer to message first?</h3>
       <a href="mailto:diamandi.jewellery@gmail.com">diamandi.jewellery@gmail.com</a>
       <a href="https://www.instagram.com/diamandi._?igsh=MXF6N3F2dTdqNmgx&utm_source=qr" target="_blank">@diamandi._ on Instagram</a>
@@ -118,6 +218,7 @@
       Cal("ui",{"theme":"dark","styles":{"branding":{"brandColor":"#b8c4cf"}},"hideEventTypeDetails":false});
     </script>
   </div>
+
 </div>
 
 <footer>
