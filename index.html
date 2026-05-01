@@ -54,42 +54,48 @@
   .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--chrome-bright); font-size: 1.5rem; cursor: pointer; }
 
   .hero {
-      height: 100vh; width: 100%;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: flex-start;
-      padding-top: 12rem;
-      text-align: center;
-      position: relative; overflow: hidden;
-      background-image: url('images/backgrounds/sapira_side_reduced.png');
-      background-size: cover;
-      background-position: center 65%;
-    }
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(to bottom,
-        rgba(4,8,13,1.0) 0%,
-        rgba(4,8,13,0.75) 25%,
-        rgba(4,8,13,0.25) 50%,
-        rgba(4,8,13,0.55) 75%,
-        rgba(4,8,13,0.92) 100%
-      );
-      z-index: 0;
-    }
-    .hero > * { position: relative; z-index: 1; }
-  
-    .hero-logo-wrap { width: 380px; height: 380px; margin-bottom: 1.5rem; }
-    .hero-logo-wrap img, .hero-logo-wrap video { width: 100%; height: 100%; object-fit: contain; }
-    .hero-title { font-family: 'RocGrotesk', sans-serif; font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 900; letter-spacing: 0.4em; text-transform: uppercase; line-height: 1; color: var(--chrome-bright); margin-bottom: 5rem; text-shadow: 0 2px 30px rgba(4,8,13,0.8); }
-    .hero-subtitle { font-family: 'RocGrotesk', sans-serif; font-size: 1rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 0.5rem; text-shadow: 0 1px 10px rgba(4,8,13,0.9); }
-    .hero-eyebrow { font-family: 'RocGrotesk', sans-serif; font-size: 0.7rem; font-weight: 400; letter-spacing: 0.45em; text-transform: uppercase; color: rgba(200,216,232,0.7); margin-bottom: 2.5rem; }
-    .hero-cta { display: inline-flex; gap: 1.5rem; margin-bottom: 3.5rem; }
-  
-    .btn { display: inline-block; padding: 0.65rem 1.8rem; font-family: 'RocGrotesk', sans-serif; font-size: 0.68rem; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; }
-    .btn-chrome { background: var(--chrome-bright); color: var(--dark); }
-    .btn-chrome:hover { background: var(--chrome); }
-    .btn-outline { background: rgba(4,8,13,0.3); color: var(--chrome-bright); border: 1px solid rgba(221,229,236,0.5); backdrop-filter: blur(4px); }
-    .btn-outline:hover { background: rgba(184,196,207,0.15); border-color: var(--chrome-bright); }
+    height: 100vh; width: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: space-between;
+    padding-top: 9rem; padding-bottom: 5rem;
+    text-align: center;
+    position: relative; overflow: hidden;
+    background-image: url('images/backgrounds/sapira_side_reduced.png');
+    background-size: cover;
+    background-position: center 65%;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(4,8,13,1.0) 0%,
+      rgba(4,8,13,0.75) 22%,
+      rgba(4,8,13,0.15) 45%,
+      rgba(4,8,13,0.15) 65%,
+      rgba(4,8,13,0.7) 85%,
+      rgba(4,8,13,0.92) 100%
+    );
+    z-index: 0;
+  }
+  .hero > * { position: relative; z-index: 1; }
+
+  /* Top group — logo + Diamandi title */
+  .hero-top { display: flex; flex-direction: column; align-items: center; }
+  .hero-logo-wrap { width: 410px; height: 410px; margin-bottom: 0.75rem; }
+  .hero-logo-wrap img, .hero-logo-wrap video { width: 100%; height: 100%; object-fit: contain; }
+  .hero-title { font-family: 'RocGrotesk', sans-serif; font-size: clamp(3.5rem, 9vw, 7rem); font-weight: 900; letter-spacing: 0.4em; text-transform: uppercase; line-height: 1; color: var(--chrome-bright); text-shadow: 0 2px 30px rgba(4,8,13,0.8); }
+
+  /* Bottom group — subtitle, eyebrow, buttons */
+  .hero-bottom { display: flex; flex-direction: column; align-items: center; }
+  .hero-subtitle { font-family: 'RocGrotesk', sans-serif; font-size: 1rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome-bright); margin-bottom: 0.5rem; text-shadow: 0 1px 10px rgba(4,8,13,0.9); }
+  .hero-eyebrow { font-family: 'RocGrotesk', sans-serif; font-size: 0.7rem; font-weight: 400; letter-spacing: 0.45em; text-transform: uppercase; color: rgba(200,216,232,0.7); margin-bottom: 2rem; }
+  .hero-cta { display: inline-flex; gap: 1.5rem; }
+
+  .btn { display: inline-block; padding: 0.65rem 1.8rem; font-family: 'RocGrotesk', sans-serif; font-size: 0.68rem; font-weight: 400; letter-spacing: 0.3em; text-transform: uppercase; text-decoration: none; transition: all 0.3s; cursor: pointer; border: none; }
+  .btn-chrome { background: var(--chrome-bright); color: var(--dark); }
+  .btn-chrome:hover { background: var(--chrome); }
+  .btn-outline { background: rgba(4,8,13,0.3); color: var(--chrome-bright); border: 1px solid rgba(221,229,236,0.5); backdrop-filter: blur(4px); }
+  .btn-outline:hover { background: rgba(184,196,207,0.15); border-color: var(--chrome-bright); }
 
   .scroll-arrow { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; color: rgba(221,229,236,0.5); animation: bounce 2s ease-in-out infinite; }
   .scroll-arrow svg { width: 24px; height: 24px; stroke: rgba(221,229,236,0.5); fill: none; stroke-width: 1.5; }
@@ -107,9 +113,7 @@
   .stat-label { font-family: 'RocGrotesk', sans-serif; font-size: 0.72rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); line-height: 1.5; }
 
   .process { max-width: 1200px; margin: 0 auto; padding: 7rem 4rem; }
-  /* CHANGED: added max-width container and tightened gap so boxes don't overflow */
   .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; margin-top: 3rem; max-width: 100%; }
-  /* CHANGED: reduced padding so boxes are narrower and fit within screen */
   .step { text-align: center; padding: 2rem 1rem; border: 1px solid rgba(90,106,122,0.2); background: var(--dark-2); transition: border-color 0.3s, background 0.3s; min-width: 0; }
   .step:hover { border-color: rgba(184,196,207,0.3); background: rgba(14,55,100,0.1); }
   .step-num { font-family: 'RocGrotesk', sans-serif; font-size: 3rem; font-weight: 400; color: rgba(138,160,180,0.55); display: block; margin-bottom: 1rem; }
@@ -128,10 +132,9 @@
 
   @media (max-width: 768px) {
     nav { padding: 1.2rem 1.5rem; } .nav-links { display: none; } .hamburger { display: flex; }
-    .hero { padding: 0 1.5rem; background-position: center center; }
-    /* CHANGED: mobile logo size adjusted proportionally */
-    .hero-logo-wrap { width: 260px; height: 260px; }
-    .hero-title { letter-spacing: 0.15em; text-align: center; width: 100%; }
+    .hero { padding: 6rem 1.5rem 3rem; background-position: center center; justify-content: space-between; }
+    .hero-logo-wrap { width: 220px; height: 220px; }
+    .hero-title { letter-spacing: 0.15em; }
     .hero-eyebrow, .hero-subtitle { text-align: center; width: 100%; }
     .hero-cta { flex-direction: column; align-items: center; width: 100%; gap: 0.75rem; }
     .intro { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
@@ -167,16 +170,22 @@
 </div>
 
 <section class="hero">
-  <div class="hero-logo-wrap">
-    <img src="images/logo/d_nobackground.PNG" alt="Diamandi D logo">
+  <div class="hero-top">
+    <div class="hero-logo-wrap">
+      <img src="images/logo/d_nobackground.PNG" alt="Diamandi D logo">
+    </div>
+    <h1 class="hero-title">Diamandi</h1>
   </div>
-  <h1 class="hero-title">Diamandi</h1>
-  <p class="hero-subtitle">Jewellery</p>
-  <p class="hero-eyebrow">Custom Grillz · Handcrafted</p>
-  <div class="hero-cta">
-    <a href="portfolio.html" class="btn btn-chrome">View Portfolio</a>
-    <a href="booking.html" class="btn btn-outline">Book a Consultation</a>
+
+  <div class="hero-bottom">
+    <p class="hero-subtitle">Jewellery</p>
+    <p class="hero-eyebrow">Custom Grillz · Handcrafted</p>
+    <div class="hero-cta">
+      <a href="portfolio.html" class="btn btn-chrome">View Portfolio</a>
+      <a href="booking.html" class="btn btn-outline">Book a Consultation</a>
+    </div>
   </div>
+
   <div class="scroll-arrow">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <polyline points="6 9 12 15 18 9"></polyline>
