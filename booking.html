@@ -37,28 +37,23 @@
   .mobile-menu a { font-family: 'RocGrotesk', sans-serif; color: var(--chrome-bright); text-decoration: none; font-size: 1.5rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; }
   .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--chrome-bright); font-size: 1.5rem; cursor: pointer; }
 
-  /* ── PAGE HEADER — compact ── */
+  /* ── PAGE HEADER ── */
   .page-header {
-    padding: 6.5rem 4rem 2rem;   /* was 10rem / 4rem */
+    padding: 6.5rem 4rem 2rem;
     background: var(--dark-2);
     text-align: center;
     border-bottom: 1px solid rgba(90,106,122,0.15);
   }
   .page-title {
     font-family: 'RocGrotesk', sans-serif;
-    font-size: clamp(1.6rem, 3.5vw, 2.4rem);  /* smaller than before */
-    font-weight: 900;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
+    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase;
     color: var(--chrome-bright);
   }
   .page-sub {
     font-family: 'RocGrotesk', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    color: var(--text-muted);
-    margin-top: 0.5rem;
+    font-size: 0.75rem; font-weight: 400; letter-spacing: 0.2em;
+    color: var(--text-muted); margin-top: 0.5rem;
   }
 
   /* ── LAYOUT ── */
@@ -67,79 +62,64 @@
     grid-template-columns: 1fr 2fr;
     max-width: 1200px;
     margin: 0 auto;
-    padding: 3rem 4rem 5rem;
+    padding: 3rem 4rem 0;
     align-items: start;
     gap: 0;
   }
 
   /* ── LEFT PANEL ── */
-  .booking-info {
-    padding-right: 4rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+  .booking-info { padding-right: 4rem; }
   .booking-info h2 {
     font-family: 'RocGrotesk', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 900;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--chrome-bright);
-    margin-bottom: 0.75rem;
+    font-size: 1.3rem; font-weight: 900;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--chrome-bright); margin-bottom: 0.75rem;
   }
   .chrome-rule { width: 40px; height: 1px; background: linear-gradient(to right, var(--blue-glow), var(--chrome-dim)); margin-bottom: 1.25rem; }
   .booking-info > p {
     font-family: 'RocGrotesk', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 400;
-    color: var(--text-muted);
-    line-height: 1.85;
-    margin-bottom: 1.25rem;
+    font-size: 0.85rem; font-weight: 400;
+    color: var(--text-muted); line-height: 1.85; margin-bottom: 1.25rem;
   }
-
-  .info-list { list-style: none; margin-bottom: 0; }
+  .info-list { list-style: none; }
   .info-list li {
     font-family: 'RocGrotesk', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 400;
+    font-size: 0.82rem; font-weight: 400;
     color: var(--text-muted);
-    padding: 0.55rem 0;
-    border-bottom: 1px solid rgba(90,106,122,0.1);
+    padding: 0.55rem 0; border-bottom: 1px solid rgba(90,106,122,0.1);
     display: flex; align-items: center; gap: 0.75rem;
   }
   .info-list li::before { content: '◆'; color: var(--chrome-dim); font-size: 0.4rem; flex-shrink: 0; }
 
-  /* ── CONTACT BLOCK — now at bottom of left panel ── */
+  /* ── CAL EMBED ── */
+  .cal-embed-section { border: 1px solid rgba(90,106,122,0.2); background: var(--dark-2); overflow: hidden; }
+
+  /* ── CONTACT BLOCK — always below cal widget ── */
+  .contact-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 4rem 5rem;
+  }
   .contact-block {
     background: var(--dark-3);
     border: 1px solid rgba(90,106,122,0.2);
     padding: 1.25rem;
-    margin-top: auto;   /* pushed to bottom inside flex column */
+    display: inline-block;
   }
   .contact-block h3 {
     font-family: 'RocGrotesk', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 900;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--chrome);
-    margin-bottom: 0.75rem;
+    font-size: 0.75rem; font-weight: 900;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--chrome); margin-bottom: 0.75rem;
   }
   .contact-block a {
     display: block;
     font-family: 'RocGrotesk', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 400;
-    color: var(--text-muted);
-    text-decoration: none;
-    margin-bottom: 0.5rem;
-    transition: color 0.3s;
+    font-size: 0.78rem; font-weight: 400;
+    color: var(--text-muted); text-decoration: none;
+    margin-bottom: 0.5rem; transition: color 0.3s;
   }
   .contact-block a:hover { color: var(--chrome-bright); }
-
-  /* ── CAL EMBED ── */
-  .cal-embed-section { border: 1px solid rgba(90,106,122,0.2); background: var(--dark-2); overflow: hidden; }
 
   /* ── FOOTER ── */
   footer { background: #020508; padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(90,106,122,0.2); }
@@ -153,9 +133,10 @@
   @media (max-width: 768px) {
     nav { padding: 1.2rem 1.5rem; } .nav-links { display: none; } .hamburger { display: flex; }
     .page-header { padding: 5.5rem 1.5rem 1.75rem; }
-    .booking-layout { grid-template-columns: 1fr; padding: 2.5rem 1.5rem 4rem; }
-    .booking-info { padding-right: 0; margin-bottom: 2.5rem; }
-    .contact-block { margin-top: 2rem; }
+    .booking-layout { grid-template-columns: 1fr; padding: 2.5rem 1.5rem 0; }
+    .booking-info { padding-right: 0; margin-bottom: 2rem; }
+    .contact-wrap { padding: 2rem 1.5rem 4rem; }
+    .contact-block { display: block; }
     footer { flex-direction: column; gap: 1.5rem; text-align: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; }
   }
@@ -190,7 +171,6 @@
 </div>
 
 <div class="booking-layout">
-
   <div class="booking-info">
     <h2>What to expect</h2>
     <div class="chrome-rule"></div>
@@ -200,13 +180,6 @@
       <li>Dental impression taken same visit</li>
       <li>Exact quote confirmed</li>
     </ul>
-
-    <!-- Contact block moved to bottom -->
-    <div class="contact-block" style="margin-top: 2.5rem;">
-      <h3>Prefer to message first?</h3>
-      <a href="mailto:diamandi.jewellery@gmail.com">diamandi.jewellery@gmail.com</a>
-      <a href="https://www.instagram.com/diamandi._?igsh=MXF6N3F2dTdqNmgx&utm_source=qr" target="_blank">@diamandi._ on Instagram</a>
-    </div>
   </div>
 
   <div class="cal-embed-section">
@@ -218,7 +191,15 @@
       Cal("ui",{"theme":"dark","styles":{"branding":{"brandColor":"#b8c4cf"}},"hideEventTypeDetails":false});
     </script>
   </div>
+</div>
 
+<!-- Contact block outside the grid — always renders below cal widget on all screen sizes -->
+<div class="contact-wrap">
+  <div class="contact-block">
+    <h3>Prefer to message first?</h3>
+    <a href="mailto:diamandi.jewellery@gmail.com">diamandi.jewellery@gmail.com</a>
+    <a href="https://www.instagram.com/diamandi._?igsh=MXF6N3F2dTdqNmgx&utm_source=qr" target="_blank">@diamandi._ on Instagram</a>
+  </div>
 </div>
 
 <footer>
