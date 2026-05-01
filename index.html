@@ -46,18 +46,18 @@
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a { color: rgba(221,229,236,0.75); text-decoration: none; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase; transition: color 0.3s; font-family: 'RocGrotesk', sans-serif; }
   .nav-links a:hover { color: var(--chrome-bright); }
-  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; z-index: 98; }
   .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--chrome-bright); }
   .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(4,8,13,0.98); z-index: 99; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
   .mobile-menu.open { display: flex; }
   .mobile-menu a { font-family: 'RocGrotesk', sans-serif; color: var(--chrome-bright); text-decoration: none; font-size: 1.5rem; font-weight: 400; letter-spacing: 0.35em; text-transform: uppercase; }
-  .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--chrome-bright); font-size: 1.5rem; cursor: pointer; }
+  .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--chrome-bright); font-size: 1.5rem; cursor: pointer; z-index: 100; }
 
   .hero {
     height: 100vh; width: 100%;
     display: flex; flex-direction: column;
-    align-items: center; justify-content: space-between;
-    padding-top: 9rem; padding-bottom: 3rem;
+    align-items: center; justify-content: flex-start;
+    padding-top: 8rem; padding-bottom: 5rem;
     text-align: center;
     position: relative; overflow: hidden;
     background-image: url('images/backgrounds/sapira_side_reduced.png');
@@ -79,17 +79,15 @@
   }
   .hero > * { position: relative; z-index: 1; }
 
-  /* Logo only in top group */
   .hero-top { display: flex; flex-direction: column; align-items: center; }
-  .hero-logo-wrap { width: 410px; height: 410px; margin-bottom: 0.75rem; }
+  .hero-logo-wrap { width: 410px; height: 410px; margin-bottom: 0.5rem; }
   .hero-logo-wrap img, .hero-logo-wrap video { width: 100%; height: 100%; object-fit: contain; }
 
-  /* Diamandi title — absolutely positioned, move with top: value below */
+  /* Diamandi title — change margin-bottom to control gap to bottom group */
   .hero-title {
-    position: absolute;
-    top: 38rem; /* ← CHANGE THIS to move title up or down */
-    left: 50%;
-    transform: translateX(-50%);
+    position: relative;
+    top: auto; left: auto;
+    transform: none;
     white-space: nowrap;
     font-family: 'RocGrotesk', sans-serif;
     font-size: clamp(3.5rem, 9vw, 7rem);
@@ -99,7 +97,7 @@
     line-height: 1;
     color: var(--chrome-bright);
     text-shadow: 0 2px 30px rgba(4,8,13,0.8);
-    z-index: 2;
+    margin-bottom: 6rem; /* ← increase for bigger gap to Jewellery, decrease for less */
   }
 
   /* Bottom group — subtitle, eyebrow, buttons */
@@ -114,7 +112,7 @@
   .btn-outline { background: rgba(4,8,13,0.3); color: var(--chrome-bright); border: 1px solid rgba(221,229,236,0.5); backdrop-filter: blur(4px); }
   .btn-outline:hover { background: rgba(184,196,207,0.15); border-color: var(--chrome-bright); }
 
-  .scroll-arrow { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; color: rgba(221,229,236,0.5); animation: bounce 2s ease-in-out infinite; }
+  .scroll-arrow { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; color: rgba(221,229,236,0.5); animation: bounce 2s ease-in-out infinite; margin-top: auto; }
   .scroll-arrow svg { width: 24px; height: 24px; stroke: rgba(221,229,236,0.5); fill: none; stroke-width: 1.5; }
   @keyframes bounce { 0%,100%{transform:translateY(0);opacity:0.4} 50%{transform:translateY(6px);opacity:0.9} }
 
@@ -149,9 +147,9 @@
 
   @media (max-width: 768px) {
     nav { padding: 1.2rem 1.5rem; } .nav-links { display: none; } .hamburger { display: flex; }
-    .hero { padding: 6rem 1.5rem 3rem; background-position: center center; justify-content: space-between; }
+    .hero { padding: 6rem 1.5rem 3rem; background-position: center center; }
     .hero-logo-wrap { width: 220px; height: 220px; }
-    .hero-title { position: absolute; top: 22rem; font-size: clamp(2.5rem, 12vw, 4rem); letter-spacing: 0.15em; }
+    .hero-title { font-size: clamp(2.5rem, 12vw, 4rem); letter-spacing: 0.15em; margin-bottom: 3rem; }
     .hero-eyebrow, .hero-subtitle { text-align: center; width: 100%; }
     .hero-cta { flex-direction: column; align-items: center; width: 100%; gap: 0.75rem; }
     .intro { grid-template-columns: 1fr; gap: 3rem; padding: 5rem 1.5rem; }
@@ -191,16 +189,14 @@
     <div class="hero-logo-wrap">
       <img src="images/logo/d_nobackground.PNG" alt="Diamandi D logo">
     </div>
-  </div>
-
-  <h1 class="hero-title">Diamandi</h1>
-
-  <div class="hero-bottom">
-    <p class="hero-subtitle">Jewellery</p>
-    <p class="hero-eyebrow">Custom Grillz · Handcrafted</p>
-    <div class="hero-cta">
-      <a href="portfolio.html" class="btn btn-chrome">View Portfolio</a>
-      <a href="booking.html" class="btn btn-outline">Book a Consultation</a>
+    <h1 class="hero-title">Diamandi</h1>
+    <div class="hero-bottom">
+      <p class="hero-subtitle">Jewellery</p>
+      <p class="hero-eyebrow">Custom Grillz · Handcrafted</p>
+      <div class="hero-cta">
+        <a href="portfolio.html" class="btn btn-chrome">View Portfolio</a>
+        <a href="booking.html" class="btn btn-outline">Book a Consultation</a>
+      </div>
     </div>
   </div>
 
