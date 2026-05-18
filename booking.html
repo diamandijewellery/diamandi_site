@@ -75,7 +75,12 @@
     letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--chrome-bright); margin-bottom: 0.75rem;
   }
-  .chrome-rule { width: 50px; height: 1px; background: var(--chrome-dim); margin-bottom: 2.5rem; }
+  .chrome-rule { width: 50px; height: 1px; background: var(--chrome-dim); margin-bottom: 1rem; }
+
+  /* ── SCROLL TO BOOK BUTTON (mobile only) ── */
+  .scroll-to-book {
+    display: none;
+  }
   .booking-info > p {
     font-family: 'RocGrotesk', sans-serif;
     font-size: 0.85rem; font-weight: 400;
@@ -96,9 +101,6 @@
 
   /* ── CONTACT BLOCK ── */
   .contact-block {
-    background: var(--dark-3);
-    border: 1px solid rgba(90,106,122,0.2);
-    padding: 1.25rem;
     margin-top: 2rem;
   }
   .contact-block h3 {
@@ -137,6 +139,16 @@
     .booking-info { padding-right: 0; margin-bottom: 2rem; }
     .booking-layout { padding-bottom: 4rem; }
     .contact-block { margin-top: 1.5rem; }
+    .scroll-to-book {
+      display: flex; align-items: center; justify-content: center; gap: 0.6rem;
+      margin-top: 1.75rem; width: 100%;
+      background: none; border: 1px solid rgba(184,196,207,0.35);
+      color: var(--chrome-bright); font-family: 'RocGrotesk', sans-serif;
+      font-size: 0.75rem; font-weight: 900; letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.85rem 1.5rem; cursor: pointer; transition: border-color 0.3s, color 0.3s;
+    }
+    .scroll-to-book:hover { border-color: var(--chrome-bright); }
+    .scroll-to-book svg { width: 14px; height: 14px; fill: currentColor; }
     footer { flex-direction: column; gap: 1.5rem; text-align: center; }
     .footer-links { flex-wrap: wrap; justify-content: center; }
     .footer-social { justify-content: center; }
@@ -192,9 +204,13 @@
         @diamandi._ on Instagram
       </a>
     </div>
+    <button class="scroll-to-book" onclick="document.getElementById('cal-embed-section').scrollIntoView({behavior:'smooth'})">
+      Book now
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 16l-6-6h12z"/></svg>
+    </button>
   </div>
 
-  <div class="cal-embed-section">
+  <div class="cal-embed-section" id="cal-embed-section">
     <div style="width:100%;min-height:900px;" id="cal-embed"></div>
     <script type="text/javascript">
       (function(C,A,L){let p=function(a,ar){a.q.push(ar)};let d=C.document;C.Cal=C.Cal||function(){let cal=C.Cal;let ar=arguments;if(!cal.loaded){cal.ns={};cal.q=cal.q||[];d.head.appendChild(d.createElement("script")).src=A;cal.loaded=true}if(ar[0]===L){const api=function(){p(api,arguments)};const namespace=ar[1];api.q=api.q||[];typeof namespace==="string"?(cal.ns[namespace]=api)&&p(api,ar):p(cal,ar);return}p(cal,ar)};})(window,"https://app.cal.com/embed/embed.js","init");
