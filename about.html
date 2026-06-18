@@ -42,7 +42,8 @@
 
   /* INTRO — image + text side by side */
   .intro { max-width: 1200px; margin: 0 auto; padding: 5rem 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-  .intro-img-placeholder { width: 100%; aspect-ratio: 2/3; background: var(--dark-3); border: 1px solid rgba(90,106,122,0.15); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; }
+  .intro-img { width: 100%; max-height: 420px; object-fit: cover; display: block; border: 1px solid rgba(90,106,122,0.15); }
+  .intro-img-placeholder { width: 100%; aspect-ratio: 2/3; max-height: 420px; background: var(--dark-3); border: 1px solid rgba(90,106,122,0.15); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; }
   .intro-img-placeholder span { font-size: 2rem; color: rgba(90,106,122,0.3); }
   .intro-img-placeholder small { font-family: 'RocGrotesk', sans-serif; font-size: 0.6rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(90,106,122,0.3); }
   .intro-body { padding-top: 0.5rem; }
@@ -103,7 +104,7 @@
 </div>
 
 <div class="intro">
-  <img src="images/portfolio/silvers_top_bottom.jpg" alt="Diamandi" class="intro-img-placeholder" style="object-fit:cover;">
+  <img src="images/about/marina.jpg" alt="Diamandi" class="intro-img">
   <div class="intro-body">
     <p class="intro-lead">Diamandi is a <strong>London-based grillz artist</strong> specialising in hand-carved wax to metal pieces — grillz, rings, and bespoke jewellery.</p>
     <p>Based in <strong>Hatton Garden</strong> and with Greek heritage rooted in a silversmithing village, jewellery is part of the DNA of the brand.</p>
