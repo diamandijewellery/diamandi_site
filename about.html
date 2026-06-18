@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Diamandi Jewellery</title>
+<style>
+  @font-face {
+    font-family: 'RocGrotesk';
+    src: url('fonts/Roc Grotesk Black.otf') format('opentype');
+    font-weight: 900;
+  }
+  @font-face {
+    font-family: 'RocGrotesk';
+    src: url('fonts/Roc Grotesk Regular.otf') format('opentype');
+    font-weight: 400;
+  }
+
+  :root {
+    --chrome: #b8c4cf; --chrome-bright: #dde5ec; --chrome-dim: #5a6a7a;
+    --blue-glow: #1e5580; --dark: #04080d; --dark-2: #070d14; --dark-3: #0c1620;
+    --text: #c8d8e8; --text-muted: #8aa0b4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--dark); color: var(--text); font-family: 'RocGrotesk', sans-serif; font-weight: 400; overflow-x: hidden; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1.5rem 4rem; background: rgba(4,8,13,0.97); border-bottom: 1px solid rgba(90,106,122,0.2); }
+  .nav-logo { font-family: 'RocGrotesk', sans-serif; font-size: 1.3rem; font-weight: 900; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome-bright); text-decoration: none; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { font-family: 'RocGrotesk', sans-serif; color: var(--text-muted); text-decoration: none; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--chrome-bright); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; z-index: 98; }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: var(--chrome-bright); }
+  .mobile-menu { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(4,8,13,0.98); z-index: 200; flex-direction: column; align-items: center; justify-content: center; gap: 2.5rem; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-family: 'RocGrotesk', sans-serif; color: var(--chrome-bright); text-decoration: none; font-size: 1.5rem; font-weight: 900; letter-spacing: 0.4em; text-transform: uppercase; }
+  .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--chrome-bright); font-size: 1.5rem; cursor: pointer; }
+
+  .page-header { padding: 6.5rem 4rem 2rem; background: var(--dark-2); text-align: center; border-bottom: 1px solid rgba(90,106,122,0.15); }
+  .section-label { font-family: 'RocGrotesk', sans-serif; font-size: 0.65rem; font-weight: 400; letter-spacing: 0.45em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.6rem; display: block; }
+  .page-title { font-family: 'RocGrotesk', sans-serif; font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 900; letter-spacing: 0.25em; text-transform: uppercase; color: var(--chrome-bright); }
+
+  /* INTRO — image + text side by side */
+  .intro { max-width: 1200px; margin: 0 auto; padding: 5rem 4rem; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .intro-img-placeholder { width: 100%; aspect-ratio: 3/4; background: var(--dark-3); border: 1px solid rgba(90,106,122,0.15); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.75rem; }
+  .intro-img-placeholder span { font-size: 2rem; color: rgba(90,106,122,0.3); }
+  .intro-img-placeholder small { font-family: 'RocGrotesk', sans-serif; font-size: 0.6rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(90,106,122,0.3); }
+  .intro-body { padding-top: 0.5rem; }
+  .intro-body p { font-family: 'RocGrotesk', sans-serif; font-size: 0.95rem; font-weight: 400; color: var(--text-muted); line-height: 2; margin-bottom: 1.5rem; }
+  .intro-body p:last-child { margin-bottom: 0; }
+
+  footer { background: #020508; padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; border-top: 1px solid rgba(90,106,122,0.2); }
+  .footer-logo { font-family: 'RocGrotesk', sans-serif; font-size: 1.1rem; font-weight: 900; letter-spacing: 0.35em; text-transform: uppercase; color: var(--chrome); }
+  .footer-links { display: flex; gap: 2rem; list-style: none; }
+  .footer-links a { font-family: 'RocGrotesk', sans-serif; color: var(--text-muted); text-decoration: none; font-size: 0.7rem; font-weight: 400; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--chrome-bright); }
+  .footer-copy { font-family: 'RocGrotesk', sans-serif; font-size: 0.65rem; color: #3a4a5a; }
+  .footer-social { display: flex; gap: 1.25rem; align-items: center; }
+  .footer-social a { color: var(--text-muted); transition: color 0.3s; display: flex; align-items: center; }
+  .footer-social a:hover { color: var(--chrome-bright); }
+  .footer-social svg { width: 18px; height: 18px; fill: currentColor; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1.2rem 1.5rem; } .nav-links { display: none; } .hamburger { display: flex; }
+    .page-header { padding: 5.5rem 1.5rem 1.75rem; }
+    .intro { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 1.5rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; padding: 2rem 1.5rem; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+    .footer-social { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Diamandi</a>
+  <ul class="nav-links">
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="pricelist.html">Price List</a></li>
+    <li><a href="booking.html">Book</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="terms.html">T&amp;Cs</a></li>
+  </ul>
+  <div class="hamburger" onclick="openMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <button class="mobile-close" onclick="closeMenu()">✕</button>
+  <a href="portfolio.html" onclick="closeMenu()">Portfolio</a>
+  <a href="pricelist.html" onclick="closeMenu()">Price List</a>
+  <a href="booking.html" onclick="closeMenu()">Book</a>
+  <a href="about.html" onclick="closeMenu()">About</a>
+  <a href="terms.html" onclick="closeMenu()">T&amp;Cs</a>
+</div>
+
+<div class="page-header">
+  <span class="section-label">The Artist</span>
+  <h1 class="page-title">About</h1>
+</div>
+
+<div class="intro">
+  <div class="intro-img-placeholder">
+    <span>◆</span>
+    <small>Add photo</small>
+  </div>
+  <div class="intro-body">
+    <p>Diamandi is a London-based grillz artist specialising in hand-carved wax to metal pieces — grillz, rings, and bespoke jewellery.</p>
+    <p>Based in Hatton Garden and with Greek heritage rooted in a silversmithing village, jewellery is part of the DNA of the brand.</p>
+    <p>The focus is always on detail — producing pieces that are refined, beautiful, and built to be worn. For grillz, that means safe materials and a fit that works.</p>
+    <p>Diamandi is committed to the best work possible and does not use any toxic materials or processes.</p>
+    <p>Always looking to push further, across grillz, rings, and beyond.</p>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-logo">Diamandi</span>
+  <ul class="footer-links">
+    <li><a href="portfolio.html">Portfolio</a></li>
+    <li><a href="pricelist.html">Price List</a></li>
+    <li><a href="booking.html">Book</a></li>
+    <li><a href="terms.html">T&amp;Cs</a></li>
+  </ul>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/diamandi._?igsh=ZGdhNTBkaWwyeDJ0" target="_blank" aria-label="Instagram">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+    </a>
+    <a href="https://www.tiktok.com/@diamandi._?_r=1&_t=ZN-96SWbCb9p6E" target="_blank" aria-label="TikTok">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.75a4.85 4.85 0 01-1.01-.06z"/></svg>
+    </a>
+  </div>
+  <span class="footer-copy">&copy; 2024 Diamandi Jewellery</span>
+</footer>
+
+<script>
+  function openMenu() { document.getElementById('mobile-menu').classList.add('open'); }
+  function closeMenu() { document.getElementById('mobile-menu').classList.remove('open'); }
+</script>
+</body>
+</html>
